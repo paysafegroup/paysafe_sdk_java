@@ -1,0 +1,11 @@
+build
+build.tests
+dist/lib
+reports
+config.properties
+.classpath
+.project
+.gradle
+.settings/
+.nb-gradle/
+.nb-gradle-properties

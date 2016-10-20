@@ -1,0 +1,13 @@
+apply plugin: "war"
+apply plugin: "jetty"
+
+repositories {
+    mavenCentral()
+}
+
+httpPort = 8181
+
+dependencies {
+   compile project(":PaysafeSDK")
+   compile "javax.servlet:servlet-api:2.5"
+}

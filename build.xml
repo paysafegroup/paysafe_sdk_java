@@ -1,0 +1,82 @@
+<project name="Paysafe Java SDK" default="dist" basedir=".">
+	<description>
+		Complete Build File that handles running and handling of test cases
+	</description>
+
+	<property name="tests" location="tests" />
+	<property name="src" location="source" />
+	<property name="build" location="build" />
+	<property name="build.tests" location="build.tests" />
+	<property name="report.tests" location="reports/tests" />
+	<property name="lib" location="lib" />
+
+	<property name="dist" location="dist" />
+
+	<path id="junit.class.path">
+		<pathelement location="${lib}/junit-4.11.jar" />
+		<pathelement location="${lib}/hamcrest-core-1.3.jar" />
+	</path>
+
+
+	<target name="init">
+	    <tstamp/>
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
+			<classpath>
+				<pathelement location="${lib}/javax.json-1.0.4.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}/lib" />
+		<jar jarfile="${dist}/lib/Paysafe-${DSTAMP}.jar" basedir="${build}" />
+		<jar jarfile="${dist}/lib/Paysafe.jar" basedir="${build}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}" />
+		<delete dir="${build.tests}" />
+
+	</target>
+
+	<target name="compiletest">
+		<mkdir dir="${build.tests}" />
+		<javac srcdir="${tests}" destdir="${build.tests}" includeantruntime="true">
+			<classpath refid="junit.class.path" />
+			<classpath>
+				<pathelement location="${build.tests}" />
+				<pathelement location="${tests}" />
+				<pathelement location="${dist}/lib/Paysafe.jar" />
+				<pathelement location="${lib}/javax.json-1.0.4.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="test" depends="dist,compiletest">
+		<mkdir dir="${report.tests}"/>
+
+		<junit printsummary="true" showoutput="true" haltonerror="false" haltonfailure="no">
+			<classpath>
+			      <pathelement location="${lib}/junit-4.11.jar" />
+			      <pathelement location="${lib}/hamcrest-core-1.3.jar" />
+	  			  <pathelement location="${dist}/lib/Paysafe.jar" />
+				  <pathelement location="${lib}/javax.json-1.0.4.jar" />
+ 			      <pathelement location="${build.tests}"/>
+			</classpath>
+
+			<formatter type="xml" />
+			<formatter type="plain"/>
+			
+			<batchtest fork="yes" todir="${report.tests}">
+				<fileset dir="${tests}" includes="*Test.java" />
+			</batchtest>
+		</junit>
+
+		<fail message="Test failure detected, check test results." if="test.failed" />
+	</target>
+</project>
