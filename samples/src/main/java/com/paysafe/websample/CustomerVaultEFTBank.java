@@ -61,7 +61,7 @@ public class CustomerVaultEFTBank extends PaysafeServletBase {
 	PrintWriter out = response.getWriter();
     boolean wasSuccessfull = false;
     Purchases purchasesResponse=null;
-    PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST,"1001057430");
+    PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST, this.accountNumber);
     	try {
     		
     		

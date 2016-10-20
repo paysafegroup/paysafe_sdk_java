@@ -56,7 +56,7 @@ public class DirectDebitEFTStandaloneCredit extends PaysafeServletBase {
 	PrintWriter out = response.getWriter();
     boolean wasSuccessfull = false;
     StandaloneCredits standaloneCreditsResponse=null;
-    PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST,"1001057670");
+    PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST, this.accountNumber);
     	try {
     	
     		StandaloneCredits standaloneCredits=

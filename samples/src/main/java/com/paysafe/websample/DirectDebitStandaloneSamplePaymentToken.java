@@ -60,7 +60,7 @@ public class DirectDebitStandaloneSamplePaymentToken extends PaysafeServletBase 
     String radio = request.getParameter("account");
     if(radio.equals("ach"))
     {
-    	PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST,"1001057430");
+    	PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST, this.accountNumber);
     	try {
     	StandaloneCredits standaloneCredits=
     		StandaloneCredits.builder()

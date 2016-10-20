@@ -54,7 +54,7 @@ public class ThreeDSecureSimpleServlet extends PaysafeServletBase {
 	  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
 	   
-		  PaysafeApiClient apiClient = new PaysafeApiClient("devcentre4628", "B-qa2-0-548ef25d-302b0213119f70d83213f828bc442dfd0af3280a7b48b1021400972746f9abe438554699c8fa3617063ca4c69a", Environment.TEST,"89983472");
+		  PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST, this.accountNumber);
 	    
 	    PrintWriter out = response.getWriter();
 	  	     

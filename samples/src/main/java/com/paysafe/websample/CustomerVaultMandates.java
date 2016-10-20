@@ -64,7 +64,7 @@ public class CustomerVaultMandates extends PaysafeServletBase {
     String radio = request.getParameter("account");
     if(radio.equals("sepa"))
     {
-    	  PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST,"1001057620");
+    	  PaysafeApiClient apiClient = new PaysafeApiClient(this.apiKey, this.apiPassword, Environment.TEST, this.accountNumber);
       	try {
       		
       		out.println("sepa selected");
