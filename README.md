@@ -20,7 +20,7 @@ http://localhost:8181/samples
 
 Samples are displayed herein. Sample configuration is currently using properties defined in:
 
-> samples/src/resources/config.properties
+> samples/src/main/resources/config.properties
 
 Modifying these settings will change settings in this environment.
 

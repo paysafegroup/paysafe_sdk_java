@@ -2,7 +2,6 @@ build
 build.tests
 dist/lib
 reports
-config.properties
 .classpath
 .project
 .gradle
