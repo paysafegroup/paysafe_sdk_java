@@ -25,10 +25,10 @@ package com.paysafe;
 public enum Environment {
 
   /** The live. */
-  LIVE("https://api.netbanx.com"),
+  LIVE("https://api.paysafe.com"),
   
   /** The test. */
-  TEST("https://api.test.netbanx.com");
+  TEST("https://api.test.paysafe.com");
 
   /** The url. */
   private final String url;
