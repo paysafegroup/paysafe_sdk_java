@@ -28,5 +28,5 @@ public enum Recurring {
   INITIAL,
   
   /** The recurrin. */
-  RECURRIN
+  RECURRING
 }
