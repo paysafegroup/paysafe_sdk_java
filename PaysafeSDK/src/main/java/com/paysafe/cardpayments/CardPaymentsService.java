@@ -315,6 +315,26 @@ public class CardPaymentsService {
 
     return client.processRequest(request, Authorization.class);
   }
+  
+    /**
+   * Get an authorization by merchantRefNum.
+   *
+   * @param  String of merchantRefNum
+   * @return Authorization
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Authorization getAuthWithMerchantRefNum(final String merchantRefNum)
+          throws IOException, PaysafeException {
+    final HashMap<String, String> queryStr = new HashMap<String, String>();
+    final Request request = Request.builder()
+            .uri(prepareUri(AUTH_PATH))
+            .method(Request.RequestType.GET)
+            .queryStr(queryStr.put("merchantRefNum", merchantRefNum);)
+            .build();
+
+    return client.processRequest(request, Authorization.class);
+  }
 
   /**
    * Get matching authorizations.
