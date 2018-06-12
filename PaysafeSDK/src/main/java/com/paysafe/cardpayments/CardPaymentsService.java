@@ -327,10 +327,11 @@ public class CardPaymentsService {
   public final Authorization getAuthWithMerchantRefNum(final String merchantRefNum)
           throws IOException, PaysafeException {
     final HashMap<String, String> queryStr = new HashMap<String, String>();
+	  queryStr.put("merchantRefNum", merchantRefNum);
     final Request request = Request.builder()
             .uri(prepareUri(AUTH_PATH))
             .method(Request.RequestType.GET)
-            .queryStr(queryStr.put("merchantRefNum", merchantRefNum);)
+            .queryStr(queryStr)
             .build();
 
     return client.processRequest(request, Authorization.class);
