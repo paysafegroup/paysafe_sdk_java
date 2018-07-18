@@ -79,6 +79,11 @@ public class PaysafeApiClient {
   private String accountNumber;
 
   /**
+   * The timeout in milliseconds to apply to connections opened by {@link #processRequest(Request, Class)}
+   */
+  private int defaultRequestTimeout = 0;
+
+  /**
    * The CardPaymentsService.
    */
   private CardPaymentsService cardPaymentService;
@@ -146,6 +151,27 @@ public class PaysafeApiClient {
           final Environment environment,
           final String account) {
     this(keyId, keyPassword, environment);
+    this.setAccount(account);
+  }
+
+  /**
+   * Instantiates a new paysafe API client.
+   *
+   * @param keyId the key id
+   * @param keyPassword the key password
+   * @param environment the environment
+   * @param account the account number
+   * @param defaultRequestTimeout the default timeout length in milliseconds for all requests mde by the client, unless
+   *                              a specific value is passed to the request.
+   */
+  public PaysafeApiClient(
+          final String keyId,
+          final String keyPassword,
+          final Environment environment,
+          final String account,
+          final int defaultRequestTimeout) {
+    this(keyId, keyPassword, environment);
+    this.defaultRequestTimeout = defaultRequestTimeout;
     this.setAccount(account);
   }
 
@@ -243,10 +269,34 @@ public class PaysafeApiClient {
           final Request request,
           Class<T> returnType)
           throws IOException, PaysafeException {
+    return this.processRequest(request, returnType, this.defaultRequestTimeout);
+  }
+
+  /**
+   * Create a connection from a request and return a specified type.
+   *
+   * @param <T> an extension of BaseDomainObject
+   * @param request the Request object to be processed
+   * @param returnType the class that will be returned
+   * @param timeout the amount of time in milliseconds before closing the connection
+   *                and throwing a {@link java.net.SocketTimeoutException}. A value of 0 will not set a timeout.
+   * @return the t
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final <T extends BaseDomainObject> T processRequest(
+          final Request request,
+          Class<T> returnType,
+          int timeout)
+          throws IOException, PaysafeException {
     final URL url = new URL(request.buildUrl(apiEndPoint));
    
     final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
     try {
+      if (timeout > 0) {
+        connection.setConnectTimeout(timeout);
+        connection.setReadTimeout(timeout);
+      }
       connection.setRequestProperty("Authorization", "Basic " + getAuthenticatedString());
       connection.setRequestMethod(request.getMethod().toString());
       connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
@@ -376,5 +426,13 @@ public class PaysafeApiClient {
   private String getAuthenticatedString() throws IOException{
     return javax.xml.bind.DatatypeConverter.printBase64Binary(
             (keyId + ':' + keyPassword).getBytes("UTF-8"));
+  }
+
+  public final int getDefaultRequestTimeout() {
+    return this.defaultRequestTimeout;
+  }
+
+  public final void setDefaultRequestTimeout(int defaultRequestTimeout) {
+    this.defaultRequestTimeout = defaultRequestTimeout;
   }
 }

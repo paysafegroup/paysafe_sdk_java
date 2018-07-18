@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 2014 Optimal Payments
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -47,34 +47,34 @@ public class CardPaymentsService {
    * The paths to different features in the API.
    */
   private static final String URI = "cardpayments/v1";
-  
+
   /** The Constant AUTH_PATH. */
   private static final String AUTH_PATH = "/auths/";
-  
+
   /** The Constant AUTH_REVERSAL_PATH. */
   private static final String AUTH_REVERSAL_PATH = "/voidauths/";
-  
+
   /** The Constant SETTLEMENT_PATH. */
   private static final String SETTLEMENT_PATH = "/settlements/";
-  
+
   /** The Constant REFUND_PATH. */
   private static final String REFUND_PATH = "/refunds/";
-  
+
   /** The Constant VERIFY_PATH. */
   private static final String VERIFY_PATH = "/verifications/";
 
   /** The Constant MERCHANT_REF_NUM. */
   private static final String MERCHANT_REF_NUM = "merchantRefNum";
-  
+
   /** The Constant LIMIT. */
   private static final String LIMIT = "limit";
-  
+
   /** The Constant OFFSET. */
   private static final String OFFSET = "offset";
-  
+
   /** The Constant START_DATE. */
   private static final String START_DATE = "startDate";
-  
+
   /** The Constant END_DATE. */
   private static final String END_DATE = "endDate";
 
@@ -89,19 +89,30 @@ public class CardPaymentsService {
 
   /**
    * Monitor.
-   *
+   * @param timeout the timeout
    * @return true, if successful
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final boolean monitor() throws IOException, PaysafeException {
+  public final boolean monitor(final int timeout) throws IOException, PaysafeException {
 
     final Request request = Request.builder()
             .uri("cardpayments/monitor")
             .method(Request.RequestType.GET)
             .build();
 
-    return ("READY".equals(client.processRequest(request, Monitor.class).getStatus()));
+    return ("READY".equals(client.processRequest(request, Monitor.class, timeout).getStatus()));
+  }
+
+  /**
+   * Monitor.
+   *
+   * @return true, if successful
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final boolean monitor() throws IOException, PaysafeException {
+    return monitor(client.getDefaultRequestTimeout());
   }
 
   /**
@@ -112,7 +123,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Authorization authorize(final Authorization auth)
+  public final Authorization authorize(final Authorization auth, final int timeout)
           throws IOException, PaysafeException {
 
     final Request request = Request.builder()
@@ -121,7 +132,11 @@ public class CardPaymentsService {
             .body(auth)
             .build();
 
-    return client.processRequest(request, Authorization.class);
+    return client.processRequest(request, Authorization.class, timeout);
+  }
+
+  public final Authorization authorize(final Authorization auth) throws IOException, PaysafeException {
+    return authorize(auth, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -133,7 +148,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final <T extends Authorization> Authorization approveHeldAuth(final Id<T> id)
+  public final <T extends Authorization> Authorization approveHeldAuth(final Id<T> id, final int timeout)
           throws IOException, PaysafeException {
 
     final Authorization tmpAuth = new Authorization();
@@ -145,7 +160,12 @@ public class CardPaymentsService {
             .body(tmpAuth)
             .build();
 
-    return client.processRequest(request, Authorization.class);
+    return client.processRequest(request, Authorization.class, timeout);
+  }
+
+  public final <T extends Authorization> Authorization approveHeldAuth(final Id<T> id)
+          throws IOException, PaysafeException {
+    return approveHeldAuth(id, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -156,7 +176,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Authorization cancelHeldAuth(final Id<Authorization> id)
+  public final Authorization cancelHeldAuth(final Id<Authorization> id, final int timeout)
           throws IOException, PaysafeException {
 
     final Authorization tmpAuth = new Authorization();
@@ -168,7 +188,12 @@ public class CardPaymentsService {
             .body(tmpAuth)
             .build();
 
-    return client.processRequest(request, Authorization.class);
+    return client.processRequest(request, Authorization.class, timeout);
+  }
+
+  public final Authorization cancelHeldAuth(final Id<Authorization> id)
+          throws IOException, PaysafeException {
+    return cancelHeldAuth(id, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -179,7 +204,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final AuthorizationReversal reverseAuth(final AuthorizationReversal authReversal)
+  public final AuthorizationReversal reverseAuth(final AuthorizationReversal authReversal, final int timeout)
           throws IOException,
           PaysafeException {
 
@@ -190,8 +215,13 @@ public class CardPaymentsService {
             .body(authReversal)
             .build();
 
-    return client.processRequest(request, AuthorizationReversal.class);
+    return client.processRequest(request, AuthorizationReversal.class, timeout);
   }
+  public final AuthorizationReversal reverseAuth(final AuthorizationReversal authReversal)
+          throws IOException, PaysafeException {
+    return reverseAuth(authReversal, client.getDefaultRequestTimeout());
+  }
+
 
   /**
    * Settle an authorization.
@@ -201,7 +231,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Settlement settlement(final Settlement settlement)
+  public final Settlement settlement(final Settlement settlement, final int timeout)
           throws IOException, PaysafeException {
 
     final Request request = Request.builder()
@@ -210,7 +240,12 @@ public class CardPaymentsService {
             .body(settlement)
             .build();
 
-    return client.processRequest(request, Settlement.class);
+    return client.processRequest(request, Settlement.class, timeout);
+  }
+
+  public final Settlement settlement(final Settlement settlement)
+          throws IOException, PaysafeException {
+    return settlement(settlement, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -221,19 +256,23 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Settlement cancelSettlement(final Id<Settlement> id)
+  public final Settlement cancelSettlement(final Id<Settlement> id, final int timeout)
           throws IOException, PaysafeException {
 
     final Settlement tmpSettlement = new Settlement();
     tmpSettlement.setStatus(Status.CANCELLED);
-    
+
     Request request = Request.builder()
             .uri(prepareUri(SETTLEMENT_PATH + id))
             .method(Request.RequestType.PUT)
             .body(tmpSettlement)
             .build();
 
-    return client.processRequest(request, Settlement.class);
+    return client.processRequest(request, Settlement.class, timeout);
+  }
+
+  public final Settlement cancelSettlement(final Id<Settlement> id) throws IOException, PaysafeException {
+    return this.cancelSettlement(id, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -244,7 +283,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Refund refund(final Refund refund) throws IOException, PaysafeException {
+  public final Refund refund(final Refund refund, final int timeout) throws IOException, PaysafeException {
 
     final Request request = Request.builder()
             .uri(prepareUri(SETTLEMENT_PATH + refund.getSettlementId() + REFUND_PATH))
@@ -252,7 +291,10 @@ public class CardPaymentsService {
             .body(refund)
             .build();
 
-    return client.processRequest(request, Refund.class);
+    return client.processRequest(request, Refund.class, timeout);
+  }
+  public final Refund refund(final Refund refund) throws IOException, PaysafeException {
+    return refund(refund, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -263,19 +305,24 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Refund cancelRefund(final Id<Refund> id) 
+  public final Refund cancelRefund(final Id<Refund> id, final int timeout)
           throws IOException, PaysafeException {
 
     final Refund tmpRefund = new Refund();
     tmpRefund.setStatus(Status.CANCELLED);
-    
+
     Request request = Request.builder()
             .uri(prepareUri(REFUND_PATH + id))
             .method(Request.RequestType.PUT)
             .body(tmpRefund)
             .build();
 
-    return client.processRequest(request, Refund.class);
+    return client.processRequest(request, Refund.class, timeout);
+  }
+
+  public final Refund cancelRefund(final Id<Refund> id)
+          throws IOException, PaysafeException {
+    return cancelRefund(id, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -286,7 +333,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Verification verify(final Verification verify) throws IOException, PaysafeException {
+  public final Verification verify(final Verification verify, final int timeout) throws IOException, PaysafeException {
 
     final Request request = Request.builder()
             .uri(prepareUri(VERIFY_PATH))
@@ -294,7 +341,11 @@ public class CardPaymentsService {
             .body(verify)
             .build();
 
-    return client.processRequest(request, Verification.class);
+    return client.processRequest(request, Verification.class, timeout);
+  }
+
+  public final Verification verify(final Verification verify) throws IOException, PaysafeException {
+    return verify(verify, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -305,7 +356,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Authorization getAuth(final Id<Authorization> id)
+  public final Authorization getAuth(final Id<Authorization> id, final int timeout)
           throws IOException, PaysafeException {
 
     final Request request = Request.builder()
@@ -313,18 +364,23 @@ public class CardPaymentsService {
             .method(Request.RequestType.GET)
             .build();
 
-    return client.processRequest(request, Authorization.class);
+    return client.processRequest(request, Authorization.class, timeout);
   }
-  
+
+  public final Authorization getAuth(final Id<Authorization> id)
+          throws IOException, PaysafeException {
+      return getAuth(id, client.getDefaultRequestTimeout());
+  }
+
     /**
    * Get an authorization by merchantRefNum.
    *
-   * @param  String of merchantRefNum
+   * @param  merchantRefNum String of merchantRefNum
    * @return Authorization
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Authorization getAuthWithMerchantRefNum(final String merchantRefNum)
+  public final Authorization getAuthWithMerchantRefNum(final String merchantRefNum, final int timeout)
           throws IOException, PaysafeException {
     final HashMap<String, String> queryStr = new HashMap<String, String>();
 	  queryStr.put("merchantRefNum", merchantRefNum);
@@ -334,7 +390,12 @@ public class CardPaymentsService {
             .queryStr(queryStr)
             .build();
 
-    return client.processRequest(request, Authorization.class);
+    return client.processRequest(request, Authorization.class, timeout);
+  }
+
+  public final Authorization getAuthWithMerchantRefNum(final String merchantRefNum)
+          throws IOException, PaysafeException {
+    return getAuthWithMerchantRefNum(merchantRefNum, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -344,6 +405,11 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
+  public final Pagerator<Authorization> getAuths(final int timeout)
+          throws IOException, PaysafeException {
+    return getAuths(null, null, timeout);
+  }
+
   public final Pagerator<Authorization> getAuths()
           throws IOException, PaysafeException {
     return getAuths(null, null);
@@ -362,6 +428,11 @@ public class CardPaymentsService {
     return getAuths(auth, null);
   }
 
+  public final Pagerator<Authorization> getAuths(final Authorization auth, final int timeout)
+          throws IOException, PaysafeException {
+    return getAuths(auth, null, timeout);
+  }
+
   /**
    * Get matching authorizations.
    *
@@ -371,7 +442,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Pagerator<Authorization> getAuths(final Authorization auth, final Filter filter)
+  public final Pagerator<Authorization> getAuths(final Authorization auth, final Filter filter, final int timeout)
           throws IOException, PaysafeException {
 
     final HashMap<String, String> queryStr = new HashMap<String, String>();
@@ -402,9 +473,14 @@ public class CardPaymentsService {
             .build();
 
     AuthorizationPagerator response
-            = client.processRequest(request, AuthorizationPagerator.class);
+            = client.processRequest(request, AuthorizationPagerator.class, timeout);
     response.setClient(client);
     return response;
+  }
+
+  public final Pagerator<Authorization> getAuths(final Authorization auth, final Filter filter)
+          throws IOException, PaysafeException {
+    return getAuths(auth, filter, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -417,7 +493,7 @@ public class CardPaymentsService {
    */
   public final AuthorizationReversal getAuthReversal(
           final Id<AuthorizationReversal> id) throws IOException, PaysafeException {
-    
+
     final Request request = Request.builder()
             .uri(prepareUri(AUTH_REVERSAL_PATH + id))
             .method(Request.RequestType.GET)
@@ -502,19 +578,33 @@ public class CardPaymentsService {
    * Get an settlement by id.
    *
    * @param id the id
+   * @param timeout the timeout
+   * @return Settlement
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Settlement getSettlement(final Id<Settlement> id, final int timeout)
+          throws IOException, PaysafeException {
+
+    final Request request = Request.builder()
+            .uri(prepareUri(SETTLEMENT_PATH + id))
+            .method(Request.RequestType.GET)
+            .build();
+
+    return client.processRequest(request, Settlement.class, timeout);
+  }
+
+  /**
+   * Get an settlement by id.
+   *
+   * @param id the id
    * @return Settlement
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
   public final Settlement getSettlement(final Id<Settlement> id)
           throws IOException, PaysafeException {
-    
-    final Request request = Request.builder()
-            .uri(prepareUri(SETTLEMENT_PATH + id))
-            .method(Request.RequestType.GET)
-            .build();
-
-    return client.processRequest(request, Settlement.class);
+    return getSettlement(id, client.getDefaultRequestTimeout());
   }
 
   /**
@@ -527,6 +617,19 @@ public class CardPaymentsService {
   public final Pagerator<Settlement> getSettlements()
           throws IOException, PaysafeException {
     return getSettlements(null, null);
+  }
+
+  /**
+   * Get matching settlements.
+   *
+   * @param timeout the timeout
+   * @return Pagerator< Settlement >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Settlement> getSettlements(final int timeout)
+          throws IOException, PaysafeException {
+    return getSettlements(null, null, timeout);
   }
 
   /**
@@ -546,13 +649,28 @@ public class CardPaymentsService {
    * Get matching settlements.
    *
    * @param settlement the settlement
+   * @param timeout the timeout
+   * @return Pagerator< Settlement >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Settlement> getSettlements(final Settlement settlement, final int timeout)
+          throws IOException, PaysafeException {
+    return getSettlements(settlement, null, timeout);
+  }
+
+  /**
+   * Get matching settlements.
+   *
+   * @param settlement the settlement
    * @param filter the filter
+   * @param timeout the timeout
    * @return Pagerator< Settlement >
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
   public final Pagerator<Settlement>
-          getSettlements(final Settlement settlement, final Filter filter)
+          getSettlements(final Settlement settlement, final Filter filter, final int timeout)
           throws IOException, PaysafeException {
 
     final HashMap<String, String> queryStr = new HashMap<String, String>();
@@ -583,9 +701,42 @@ public class CardPaymentsService {
             .build();
 
     final SettlementPagerator response
-            = client.processRequest(request, SettlementPagerator.class);
+            = client.processRequest(request, SettlementPagerator.class, timeout);
     response.setClient(client);
     return response;
+  }
+
+  /**
+   * Get matching settlements.
+   *
+   * @param settlement the settlement
+   * @param filter the filter
+   * @return Pagerator< Settlement >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Settlement> getSettlements(final Settlement settlement, final Filter filter)
+          throws IOException, PaysafeException {
+    return getSettlements(settlement, filter, client.getDefaultRequestTimeout());
+  }
+
+  /**
+   * Get an refund by id.
+   *
+   * @param id the id
+   * @param timeout the timeout
+   * @return Refund
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Refund getRefund(final Id<Refund> id, final int timeout) throws IOException, PaysafeException {
+
+    final Request request = Request.builder()
+            .uri(prepareUri(REFUND_PATH + id))
+            .method(Request.RequestType.GET)
+            .build();
+
+    return client.processRequest(request, Refund.class, timeout);
   }
 
   /**
@@ -597,13 +748,19 @@ public class CardPaymentsService {
    * @throws PaysafeException the paysafe exception
    */
   public final Refund getRefund(final Id<Refund> id) throws IOException, PaysafeException {
-    
-    final Request request = Request.builder()
-            .uri(prepareUri(REFUND_PATH + id))
-            .method(Request.RequestType.GET)
-            .build();
+    return getRefund(id, client.getDefaultRequestTimeout());
+  }
 
-    return client.processRequest(request, Refund.class);
+  /**
+   * Get matching refunds.
+   *
+   * @param timeout the timeout
+   * @return Pagerator< Refund >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Refund> getRefunds(final int timeout) throws IOException, PaysafeException {
+    return getRefunds(null, null, timeout);
   }
 
   /**
@@ -613,9 +770,22 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Pagerator<Refund> getRefunds()
-          throws IOException, PaysafeException {
+  public final Pagerator<Refund> getRefunds() throws IOException, PaysafeException {
     return getRefunds(null, null);
+  }
+
+  /**
+   * Get matching refunds.
+   *
+   * @param refund the refund
+   * @param timeout the timeout
+   * @return Pagerator< Refund >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Refund> getRefunds(final Refund refund, final int timeout)
+          throws IOException, PaysafeException {
+    return getRefunds(refund, null, timeout);
   }
 
   /**
@@ -626,8 +796,7 @@ public class CardPaymentsService {
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
-  public final Pagerator<Refund> getRefunds(final Refund refund)
-          throws IOException, PaysafeException {
+  public final Pagerator<Refund> getRefunds(final Refund refund) throws IOException, PaysafeException {
     return getRefunds(refund, null);
   }
 
@@ -636,12 +805,13 @@ public class CardPaymentsService {
    *
    * @param refund the refund
    * @param filter the filter
+   * @param timeout the timeout
    * @return Pagerator< Refund >
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
   public final Pagerator<Refund>
-          getRefunds(final Refund refund, final Filter filter)
+          getRefunds(final Refund refund, final Filter filter, final int timeout)
           throws IOException, PaysafeException {
 
     final HashMap<String, String> queryStr = new HashMap<String, String>();
@@ -671,10 +841,43 @@ public class CardPaymentsService {
             .queryStr(queryStr)
             .build();
 
-    final RefundPagerator response
-            = client.processRequest(request, RefundPagerator.class);
+    final RefundPagerator response = client.processRequest(request, RefundPagerator.class, timeout);
     response.setClient(client);
     return response;
+  }
+
+  /**
+   * Get matching refunds.
+   *
+   * @param refund the refund
+   * @param filter the filter
+   * @return Pagerator< Refund >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Refund> getRefunds(final Refund refund, final Filter filter)
+          throws IOException, PaysafeException {
+    return getRefunds(refund, filter, client.getDefaultRequestTimeout());
+  }
+
+  /**
+   * Get an verification by id.
+   *
+   * @param id the id
+   * @param timeout the timeout
+   * @return Verification
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Verification getVerification(final Id<Verification> id, final int timeout)
+          throws IOException, PaysafeException {
+
+    final Request request = Request.builder()
+            .uri(prepareUri(VERIFY_PATH + id))
+            .method(Request.RequestType.GET)
+            .build();
+
+    return client.processRequest(request, Verification.class, timeout);
   }
 
   /**
@@ -687,13 +890,20 @@ public class CardPaymentsService {
    */
   public final Verification getVerification(final Id<Verification> id)
           throws IOException, PaysafeException {
-    
-    final Request request = Request.builder()
-            .uri(prepareUri(VERIFY_PATH + id))
-            .method(Request.RequestType.GET)
-            .build();
+    return getVerification(id, client.getDefaultRequestTimeout());
+  }
 
-    return client.processRequest(request, Verification.class);
+  /**
+   * Get matching verifications.
+   *
+   * @param timeout the timeout
+   * @return Pagerator< Verification >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Verification> getVerifications(final int timeout)
+          throws IOException, PaysafeException {
+    return getVerifications(null, null, timeout);
   }
 
   /**
@@ -706,6 +916,20 @@ public class CardPaymentsService {
   public final Pagerator<Verification> getVerifications()
           throws IOException, PaysafeException {
     return getVerifications(null, null);
+  }
+
+  /**
+   * Get matching verifications.
+   *
+   * @param verification the verification
+   * @param timeout the timeout
+   * @return Pagerator< Verification >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Verification> getVerifications(final Verification verification, final int timeout)
+          throws IOException, PaysafeException {
+    return getVerifications(verification, null, timeout);
   }
 
   /**
@@ -726,12 +950,13 @@ public class CardPaymentsService {
    *
    * @param verification the verification
    * @param filter the filter
+   * @param timeout the timeout
    * @return Pagerator< Verification >
    * @throws IOException Signals that an I/O exception has occurred.
    * @throws PaysafeException the paysafe exception
    */
   public final Pagerator<Verification>
-          getVerifications(final Verification verification, final Filter filter)
+          getVerifications(final Verification verification, final Filter filter, final int timeout)
           throws IOException, PaysafeException {
 
     final HashMap<String, String> queryStr = new HashMap<String, String>();
@@ -762,9 +987,23 @@ public class CardPaymentsService {
             .build();
 
     final VerificationPagerator response
-            = client.processRequest(request, VerificationPagerator.class);
+            = client.processRequest(request, VerificationPagerator.class, timeout);
     response.setClient(client);
     return response;
+  }
+
+  /**
+   * Get matching verifications.
+   *
+   * @param verification the verification
+   * @param filter the filter
+   * @return Pagerator< Verification >
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws PaysafeException the paysafe exception
+   */
+  public final Pagerator<Verification> getVerifications(final Verification verification, final Filter filter)
+          throws IOException, PaysafeException {
+    return getVerifications(verification, filter, client.getDefaultRequestTimeout());
   }
 
   /**
