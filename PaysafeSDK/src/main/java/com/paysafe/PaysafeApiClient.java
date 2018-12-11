@@ -250,6 +250,7 @@ public class PaysafeApiClient {
       connection.setRequestProperty("Authorization", "Basic " + getAuthenticatedString());
       connection.setRequestMethod(request.getMethod().toString());
       connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+      connection.setRequestProperty("SDK-Type", "Paysafe_Java_SDK");
 
       // Write to the stream if we can
       if (request.getMethod().equals(Request.RequestType.POST)
