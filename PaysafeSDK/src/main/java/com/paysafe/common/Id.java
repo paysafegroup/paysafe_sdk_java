@@ -34,6 +34,10 @@ public class Id<T extends BaseDomainObject> {
   /** The type. */
   private final Class<T> type;
 
+  public String getId() {
+	return id;
+  }
+  
   /**
    * Instantiates a new id.
    *
