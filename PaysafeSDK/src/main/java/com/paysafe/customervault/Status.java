@@ -50,5 +50,8 @@ public enum Status {
   DISPUTED,
   
   /** The inactive. */
-  INACTIVE
+  INACTIVE,
+  
+  /** The completed. */
+  COMPLETED
 }
