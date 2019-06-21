@@ -47,11 +47,17 @@ public class Authentication implements DomainObject {
   
   /** The three d result. */
   @Expose
-  private String threeDResult;
+  private ThreeDResult threeDResult;
   
   /** The signature status. */
   @Expose
   private String signatureStatus;
+ 
+  @Expose
+  private String threeDSecureVersion;
+  
+  @Expose
+  private String directoryServerTransactionId;
 
   /**
    * Gets the eci.
@@ -130,19 +136,20 @@ public class Authentication implements DomainObject {
    *
    * @return the three d result
    */
-  public final String getThreeDResult() {
+ public final ThreeDResult getThreeDResult() {
     return threeDResult;
   }
 
-  /**
+   /*
    * Sets the three d result.
    *
    * @param threeDResult the new three d result
    */
-  public final void setThreeDResult(final String threeDResult) {
+  public final void setThreeDResult(final ThreeDResult threeDResult) {
     this.threeDResult = threeDResult;
   }
-
+  
+  
   /**
    * Gets the signature status.
    *
@@ -151,8 +158,8 @@ public class Authentication implements DomainObject {
   public final String getSignatureStatus() {
     return signatureStatus;
   }
-
-  /**
+  
+/**
    * Sets the signature status.
    *
    * @param signatureStatus the new signature status
@@ -160,6 +167,22 @@ public class Authentication implements DomainObject {
   public final void setSignatureStatus(final String signatureStatus) {
     this.signatureStatus = signatureStatus;
   }
+  
+  public String getThreeDSecureVersion() {
+		return threeDSecureVersion;
+	}
+
+	public void setThreeDSecureVersion(String threeDSecureVersion) {
+		this.threeDSecureVersion = threeDSecureVersion;
+	}
+
+	public String getDirectoryServerTransactionId() {
+		return directoryServerTransactionId;
+	}
+
+	public void setDirectoryServerTransactionId(String directoryServerTransactionId) {
+		this.directoryServerTransactionId = directoryServerTransactionId;
+	}
 
   /**
    * The sub-builder class for Authentication.
@@ -242,7 +265,7 @@ public class Authentication implements DomainObject {
      * @param threeDResult the three d result
      * @return AuthenticationBuilder< BLDRT >
      */
-    public final AuthenticationBuilder<BLDRT> threeDResult(final String threeDResult) {
+    public final AuthenticationBuilder<BLDRT> threeDResult(final ThreeDResult threeDResult) {
       authentication.setThreeDResult(threeDResult);
       return this;
     }
@@ -257,5 +280,15 @@ public class Authentication implements DomainObject {
       authentication.setSignatureStatus(signatureStatus);
       return this;
     }
+    
+    public final AuthenticationBuilder<BLDRT> threeDSecureVersion(final String threeDSecureVersion){
+    	authentication.setThreeDSecureVersion(threeDSecureVersion);
+    	return this;
+    }
+    public final AuthenticationBuilder<BLDRT>directoryServerTransactionId(final String directoryServerTransactionId){
+     authentication.setDirectoryServerTransactionId(directoryServerTransactionId);
+     return this;
+    }
+    
   }
 }
