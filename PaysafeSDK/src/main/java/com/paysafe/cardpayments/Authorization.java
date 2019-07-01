@@ -742,9 +742,9 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
     /** The accord d builder. */
     private AccordD.AccordDBuilder<AuthorizationBuilder> accordDBuilder;
     
-    private StoredCredentialBuilder<AuthorizationBuilder>storedCredentialBuilder;
+    private StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>storedCredentialBuilder;
     
-    /** The authorization. */
+     /** The authorization. */
     private final Authorization authorization = new Authorization();
 
     /**
@@ -834,12 +834,6 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
       return cardBuilder;
     }
     
-    public final StoredCredential.StoredCredentialBuilder<AuthorizationBuilder> storedCredential(){
-    	if(null==storedCredentialBuilder){
-    		storedCredentialBuilder=new StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>(this);
-    	}
-    	return storedCredentialBuilder;
-    }
     /**
      * Add details from a customer vault card to this card object.
      *
@@ -914,6 +908,19 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
       shippingDetailsBuilder = new ShippingDetails.ShippingDetailsBuilder<
                 AuthorizationBuilder>(this, a);
       return this;
+    }
+	
+	 /**
+     * Add details from a Stored credentials to this Stored credentials object.
+     *
+     * @param a the a
+     * @return AuthorizationBuilder
+     */	
+    public final StoredCredential.StoredCredentialBuilder<AuthorizationBuilder> storedCredential(){
+    	if(null==storedCredentialBuilder){
+    		storedCredentialBuilder=new StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>(this);
+    	}
+    	return storedCredentialBuilder;
     }
 
     /**
