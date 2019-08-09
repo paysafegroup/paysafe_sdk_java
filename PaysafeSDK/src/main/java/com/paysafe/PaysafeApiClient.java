@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import javax.net.ssl.HttpsURLConnection;
+import java.net.HttpURLConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.paysafe.cardpayments.CardPaymentsService;
@@ -245,7 +245,7 @@ public class PaysafeApiClient {
           throws IOException, PaysafeException {
     final URL url = new URL(request.buildUrl(apiEndPoint));
    
-    final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+    final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
     try {
       connection.setRequestProperty("Authorization", "Basic " + getAuthenticatedString());
       connection.setRequestMethod(request.getMethod().toString());
