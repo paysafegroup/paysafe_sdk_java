@@ -1,7 +1,6 @@
 package com.paysafe.threedsecureV2;
 
-import com.paysafe.common.AddressDetails;
-import com.paysafe.common.impl.AddressContainer;
+import com.google.gson.annotations.Expose;
 import com.paysafe.common.impl.DomainObject;
 import com.paysafe.common.impl.GenericBuilder;
 import com.paysafe.common.impl.NestedBuilder;
@@ -9,22 +8,146 @@ import com.paysafe.common.impl.NestedBuilder;
 /**
  * The Class BillingDetails.
  */
-public class BillingDetails extends AddressContainer implements DomainObject {
+public class BillingDetails implements DomainObject {
 
+	  @Expose
+	  private String street;
+	  
+	  /** The street2. */
+	  @Expose
+	  private String street2;
+	  
+	  /** The city. */
+	  @Expose
+	  private String city;
+	  
+	  /** The state. */
+	  @Expose
+	  private String state;
+	  
+	  /** The country. */
+	  @Expose
+	  private Country country;
+	  
+	  /** The zip. */
+	  @Expose
+	  private String zip;
+	
+	  /**
+	   * Gets the street.
+	   *
+	   * @return the street
+	   */
+  public String getStreet() {
+		return street;
+	}
   /**
+	  * Sets the street.
+	  *
+	  * @param street the new street
+	  */
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	/**
+	   * Gets the street2.
+	   *
+	   * @return the street2
+	   */
+	public String getStreet2() {
+		return street2;
+	}
+	/**
+	  * Sets the street2.
+	  *
+	  * @param street2 the new street2
+	  */
+	public void setStreet2(String street2) {
+		this.street2 = street2;
+	}
+	/**
+	   * Gets the city.
+	   *
+	   * @return the city
+	   */
+	public String getCity() {
+		return city;
+	}
+	/**
+	  * Sets the city.
+	  *
+	  * @param city the new city
+	  */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	   * Gets the state.
+	   *
+	   * @return the state
+	   */
+	public String getState() {
+		return state;
+	}
+	/**
+	  * Sets the state.
+	  *
+	  * @param state the new state
+	  */
+	public void setState(String state) {
+		this.state = state;
+	}
+	/**
+	   * Gets the country.
+	   *
+	   * @return the country
+	   */
+	public Country getCountry() {
+		return country;
+	}
+	/**
+	  * Sets the country.
+	  *
+	  * @param country the new country
+	  */
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	/**
+	   * Gets the zip.
+	   *
+	   * @return the zip
+	   */
+	public String getZip() {
+		return zip;
+	}
+	/**
+	  * Sets the zip.
+	  *
+	  * @param zip the new zip
+	  */
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+/**
    * The sub-builder class for BillingDetails.
    *
    * @param <BLDRT> the parent builder
    */
   public static class BillingDetailsBuilder<BLDRT extends GenericBuilder>
           extends NestedBuilder<BillingDetails, BLDRT> {
+	  
+	  /** The billing details. */
+	    private final BillingDetails billingDetails = new BillingDetails();
+	    
+	    @Override
+		public BillingDetails build() {
+			return billingDetails;
+		}
 
-    /** The billing details. */
-    private final BillingDetails billingDetails = new BillingDetails();
     
-    /** The address details. */
-    private AddressDetails addressDetails = new AddressDetails();
-
+   
     /**
      * Instantiates a new billing details builder.
      *
@@ -34,29 +157,8 @@ public class BillingDetails extends AddressContainer implements DomainObject {
       super(parent);
     }
 
-    /**
-     * Instantiates a new billing details builder.
-     *
-     * @param parent the parent
-     * @param a the a
-     */
-    public BillingDetailsBuilder(final BLDRT parent,com.paysafe.customervault.Address a) {
-      super(parent);
-      if (null != a.getAddressDetails()) {
-        addressDetails = a.getAddressDetails();
-      }
-    }
-
-    /**
-     * Build this BillingDetails object.
-     *
-     * @return BillingDetails
-     */
-    @Override
-    public final BillingDetails build() {
-      billingDetails.setAddressDetails(addressDetails);
-      return billingDetails;
-    }
+   
+   
 
     /**
      * Set the street property.
@@ -65,7 +167,7 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @return BillingDetailsBuilder< BLDRT >
      */
     public final BillingDetailsBuilder<BLDRT> street(final String street) {
-      addressDetails.setStreet(street);
+      billingDetails.setStreet(street);
       return this;
     }
 
@@ -76,7 +178,7 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @return BillingDetailsBuilder< BLDRT >
      */
     public final BillingDetailsBuilder<BLDRT> street2(final String street2) {
-      addressDetails.setStreet2(street2);
+      billingDetails.setStreet2(street2);
       return this;
     }
 
@@ -87,7 +189,7 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @return BillingDetailsBuilder< BLDRT >
      */
     public final BillingDetailsBuilder<BLDRT> city(final String city) {
-      addressDetails.setCity(city);
+      billingDetails.setCity(city);
       return this;
     }
 
@@ -98,7 +200,7 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @return BillingDetailsBuilder< BLDRT >
      */
     public final BillingDetailsBuilder<BLDRT> state(final String state) {
-      addressDetails.setState(state);
+      billingDetails.setState(state);
       return this;
     }
 
@@ -108,8 +210,8 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @param country the country
      * @return BillingDetailsBuilder< BLDRT >
      */
-    public final BillingDetailsBuilder<BLDRT> country(final String country) {
-      addressDetails.setCountry(country);
+    public final BillingDetailsBuilder<BLDRT> country(final Country country) {
+      billingDetails.setCountry(country);
       return this;
     }
 
@@ -120,9 +222,9 @@ public class BillingDetails extends AddressContainer implements DomainObject {
      * @return BillingDetailsBuilder< BLDRT >
      */
     public final BillingDetailsBuilder<BLDRT> zip(final String zip) {
-      addressDetails.setZip(zip);
+      billingDetails.setZip(zip);
       return this;
     }
- }
+   }
 }
 

@@ -1,16 +1,10 @@
 package com.paysafe.threedsecureV2;
 
+/**
+ * Used by Authentications.
+ */
 public enum Status {
-	
-	/** The completed. */
 	COMPLETED,
-	
 	PENDING,
-	
-	/** The failed. */
 	FAILED
-
-	
-
-
 }

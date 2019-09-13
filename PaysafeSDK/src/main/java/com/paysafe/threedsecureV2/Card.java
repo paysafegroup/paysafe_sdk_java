@@ -24,7 +24,7 @@ public class Card implements DomainObject {
   private String cardNum;
   
   /** The card Bin. */
-  @Expose
+ 
   private String cardBin;
   
   /** The card expiry. */
@@ -32,11 +32,9 @@ public class Card implements DomainObject {
   private CardExpiry cardExpiry;
   
   /** The type. */
-  @Expose
   private Type type;
   
   /** The last digits. */
-  @Expose
   private String lastDigits;
   
  
@@ -239,36 +237,6 @@ public class Card implements DomainObject {
     public final CardBuilder<BLDRT> holderName(final String holderName){
     	card.setHolderName(holderName);
 		return this;
-    }
-    /**
-     * Set the cardBin property.
-     *
-     * @param cardBin the cardBin
-     * @return CardBuilder< BLDRT >
-     */
-    public final CardBuilder<BLDRT>cardBin(final String cardBin){
-    	card.setCardBin(cardBin);
-    	return this;
-    }
-    /**
-     * Set the type property.
-     *
-     * @param type the type
-     * @return CardBuilder< BLDRT >
-     */
-    public final CardBuilder<BLDRT>type(final Type type){
-    	card.setType(type);
-		return this;
-    }
-    /**
-     * Set the lastDigits property.
-     *
-     * @param lastDigits the lastDigits
-     * @return CardBuilder< BLDRT >
-     */
-    public final CardBuilder<BLDRT>lastDigits(final String lastDigits){
-    	card.setLastDigits(lastDigits);
-    	return this;
     }
   }
 }

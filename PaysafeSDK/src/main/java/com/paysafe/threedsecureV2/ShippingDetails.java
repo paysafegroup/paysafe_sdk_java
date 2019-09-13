@@ -1,10 +1,8 @@
 package com.paysafe.threedsecureV2;
 
 import com.google.gson.annotations.Expose;
-import com.paysafe.common.AddressDetails;
 import com.paysafe.common.Carrier;
 import com.paysafe.common.ShipMethod;
-import com.paysafe.common.impl.AddressContainer;
 import com.paysafe.common.impl.DomainObject;
 import com.paysafe.common.impl.GenericBuilder;
 import com.paysafe.common.impl.NestedBuilder;
@@ -12,10 +10,10 @@ import com.paysafe.common.impl.NestedBuilder;
 /**
  * The Class ShippingDetails.
  */
-public class ShippingDetails extends AddressContainer implements DomainObject {
+public class ShippingDetails implements DomainObject {
 
 	/** The carrier. */
-	  @Expose
+	 @Expose
 	  private Carrier carrier;
 	  
 	  /** The ship method. */
@@ -23,7 +21,7 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	  private ShipMethod shipMethod;
 	  
 	  /** The recipient name. */
-	  @Expose
+	  
 	  private String recipientName;
 	  
 	  /** The company. */
@@ -240,57 +238,29 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	   */
 	  public static class ShippingDetailsBuilder<BLDRT extends GenericBuilder> extends
 	          NestedBuilder<ShippingDetails, BLDRT> {
+		  /** The shipping details. */
+		    private final ShippingDetails shippingDetails = new ShippingDetails();
 
-	    /** The shipping details. */
-	    private final ShippingDetails shippingDetails = new ShippingDetails();
-	    
-	    /** The address details. */
-	    private AddressDetails addressDetails = new AddressDetails();
-
+		 
+			@Override
+			public ShippingDetails build() {
+				return shippingDetails;
+			}
 	    /**
-	     * Instantiates a new shipping details builder.
-	     *
-	     * @param parent the parent
-	     */
-	    public ShippingDetailsBuilder(final BLDRT parent) {
-	      super(parent);
-	    }
-
-	    /**
-	     * Instantiates a new shipping details builder.
-	     *
-	     * @param parent the parent
-	     * @param a the a
-	     */
-	    public ShippingDetailsBuilder(
-	            final BLDRT parent,
-	            com.paysafe.customervault.Address a) {
-	      super(parent);
-	      if (null != a.getAddressDetails()) {
-	        addressDetails = a.getAddressDetails();
-	      }
-	      shippingDetails.setRecipientName(a.getRecipientName());
-	    }
-
-	    /**
-	     * Build this ShippingDetails object.
-	     *
-	     * @return shippingDetails
-	     */
-	    @Override
-	    public final ShippingDetails build() {
-	      shippingDetails.setAddressDetails(addressDetails);
-	      return shippingDetails;
-	    }
-
-	    /**
+		 * @param parent
+		 */
+		public ShippingDetailsBuilder(final BLDRT parent) {
+			super(parent);
+			}
+		
+	   /**
 	     * Set the street property.
 	     *
 	     * @param street the street
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
 	    public final ShippingDetailsBuilder<BLDRT> street(final String street) {
-	      addressDetails.setStreet(street);
+	      shippingDetails.setStreet(street);
 	      return this;
 	    }
 
@@ -301,7 +271,7 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
 	    public final ShippingDetailsBuilder<BLDRT> street2(final String street2) {
-	      addressDetails.setStreet2(street2);
+	      shippingDetails.setStreet2(street2);
 	      return this;
 	    }
 
@@ -312,7 +282,7 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
 	    public final ShippingDetailsBuilder<BLDRT> city(final String city) {
-	      addressDetails.setCity(city);
+	      shippingDetails.setCity(city);
 	      return this;
 	    }
 
@@ -323,7 +293,7 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
 	    public final ShippingDetailsBuilder<BLDRT> state(final String state) {
-	      addressDetails.setState(state);
+	      shippingDetails.setState(state);
 	      return this;
 	    }
 
@@ -333,8 +303,8 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	     * @param country the country
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
-	    public final ShippingDetailsBuilder<BLDRT> country(final String country) {
-	      addressDetails.setCountry(country);
+	    public final ShippingDetailsBuilder<BLDRT> country(final Country country) {
+	      shippingDetails.setCountry(country);
 	      return this;
 	    }
 
@@ -345,7 +315,7 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	     * @return ShippingDetailsBuilder< BLDRT >
 	     */
 	    public final ShippingDetailsBuilder<BLDRT> zip(final String zip) {
-	      addressDetails.setZip(zip);
+	      shippingDetails.setZip(zip);
 	      return this;
 	    }
 
@@ -371,16 +341,6 @@ public class ShippingDetails extends AddressContainer implements DomainObject {
 	      shippingDetails.setShipMethod(shipMethod);
 	      return this;
 	    }
-	    /**
-	     * Set the company property.
-	     *
-	     * @param company the company
-	     * @return ShippingDetailsBuilder< BLDRT >
-	     */
-	    public final ShippingDetailsBuilder<BLDRT> company(final String company){
-	    	shippingDetails.setCompany(company);
-			return this;
 	    }
-	  }
 	}
 

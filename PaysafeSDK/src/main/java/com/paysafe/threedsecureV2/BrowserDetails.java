@@ -326,6 +326,5 @@ public class BrowserDetails implements DomainObject {
 			browserDetails.setCustomerIp(customerIp);
 			return this;
 		}		
-		
 	}
 }

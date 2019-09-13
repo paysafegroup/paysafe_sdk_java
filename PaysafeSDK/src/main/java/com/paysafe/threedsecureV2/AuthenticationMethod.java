@@ -1,5 +1,4 @@
 package com.paysafe.threedsecureV2;
-
 /**
  * Used by UserLogin from UserAccountDetails.
  */
@@ -10,6 +9,6 @@ public enum AuthenticationMethod {
 	INTERNAL_CREDENTIALS,
 	FEDERATED_ID,
 	ISSUER_CREDENTIALS,
-	THIRD_PARY_AUTHENTICATION,
+	THIRD_PARTY_AUTHENTICATION,
 	FIDO_AUTHENTICATOR
 }

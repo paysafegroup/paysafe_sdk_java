@@ -1,12 +1,9 @@
 package com.paysafe.threedsecureV2;
 
-import java.util.ArrayList;
-
 import com.google.gson.annotations.Expose;
 import com.paysafe.cardpayments.ThreeDResult;
 import com.paysafe.common.Error;
 import com.paysafe.common.Id;
-import com.paysafe.common.Link;
 import com.paysafe.common.impl.BaseBuilder;
 import com.paysafe.common.impl.BaseDomainObject;
 
@@ -16,7 +13,7 @@ import com.paysafe.common.impl.BaseDomainObject;
 public class Authentications implements BaseDomainObject {
 
     /** The id. */
-	@Expose
+	
 	private Id<Authentications> id;
 	
 	/** The deviceFingerprintingId. */
@@ -44,35 +41,35 @@ public class Authentications implements BaseDomainObject {
 	private String merchantUrl;
 	
 	/** The txnTime. */
-	@Expose
+	
 	private String txnTime;
 	
 	/** The error. */
-	@Expose
+	
 	private Error error;
 	
 	/** The status. */
-	@Expose
+	
 	private Status status;
 	
 	/** The acsURL. */
-	@Expose
+	
 	private String acsURL;
 	
 	/** The payload. */
-	@Expose
+	
 	private String payload;
 	
 	/** The three d enrollment. */
-	@Expose
+	
 	private ThreeDEnrollment threeDEnrollment;
 	
 	/** The three d result. */
-	@Expose
+	
 	private ThreeDResult threeDResult;
 	
 	/** The three d Secure Version. */
-	@Expose
+	
 	private String threeDSecureVersion;
 	
 	/** The directoryServerTransactionId. */
@@ -80,19 +77,19 @@ public class Authentications implements BaseDomainObject {
 	private String directoryServerTransactionId;
 	
 	/** The eci. */
-	@Expose
+	
 	private Integer eci;
 	
 	/** The cavv. */
-	@Expose
+	
 	private String cavv;
 	
 	/** The xid. */
-	@Expose
+	
 	private String xid;
 	
 	/** The sdk Challenge Payload. */
-	@Expose
+	
 	private String sdkChallengePayload;
 	
 	/** the type of transaction being authenticated. */
@@ -124,7 +121,7 @@ public class Authentications implements BaseDomainObject {
 	private RequestorChallengePreference requestorChallengePreference;
 	
 	/** The electronic delivery. */
-	@Expose
+	
 	private ElectronicDelivery electronicDelivery;
 	
 	/** The order Item Details. */
@@ -160,11 +157,11 @@ public class Authentications implements BaseDomainObject {
 	private Profile profile;
 	
 	/** The profile. */
-	@Expose
+	
 	private SignatureStatus signatureStatus;
 	
 	/** The links. */
-	private ArrayList<Link> links;
+//	private ArrayList<Link> links;
 	
 	
 /**
@@ -295,11 +292,8 @@ public String getTxnTime() {
 public void setTxnTime(String txnTime) {
 	this.txnTime = txnTime;
 }
-/* (non-Javadoc)
- * @see com.optimalpayments.common.impl.BaseDomainObject#getError()
- */
+
 public Error getError() {
-	// TODO Auto-generated method stub
 	return null;
 }
 /**
@@ -748,19 +742,35 @@ public void setProfile(Profile profile) {
  *
  * @return the links
  */	
-public ArrayList<Link> getLinks() {
-		return links;
-}
+//public ArrayList<Link> getLinks() {
+//		return links;
+//}
 
 /**
  * Sets the links.
  *
  * @param links the new links
  */
-public void setLinks(ArrayList<Link> links) {
-		this.links = links;
- }
+//public void setLinks(ArrayList<Link> links) {
+//		this.links = links;
+// }
+/**
+ * Gets the signatureStatus.
+ *
+ * @return the signatureStatus
+ */	
+public SignatureStatus getSignatureStatus() {
+	return signatureStatus;
+}
 
+/**
+ * Sets the signatureStatus.
+ *
+ * @param signatureStatus the new signatureStatus
+ */
+public void setSignatureStatus(SignatureStatus signatureStatus) {
+	this.signatureStatus = signatureStatus;
+}
 /**
  * Get an Authentications builder.
  *
@@ -894,12 +904,6 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 		return billingDetailsBuilder;
 	}
 	
-	public final AuthenticationsBuilder billingDetails(
-			final com.paysafe.customervault.Address a){
-		billingDetailsBuilder=new BillingDetails.BillingDetailsBuilder<
-				AuthenticationsBuilder>(this, a);
-		return this;
-	}
 	public final UserAccountDetails.UserAccountDetailsBuilder<AuthenticationsBuilder> userAccountDetails(){
 		if(null==userAccountDetailsBuilder)
 			userAccountDetailsBuilder=new UserAccountDetails.UserAccountDetailsBuilder<AuthenticationsBuilder>(this);
@@ -911,28 +915,12 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 			shippingDetailsBuilder=new ShippingDetails.ShippingDetailsBuilder<AuthenticationsBuilder>(this);
 		return shippingDetailsBuilder;
 	}
-	public final AuthenticationsBuilder shippingDetails(final com.paysafe.customervault.Address a){
-		shippingDetailsBuilder=new ShippingDetails.ShippingDetailsBuilder<AuthenticationsBuilder>(this, a);
-		return this;
-	}
-	
 	public final Profile.ProfileBuilder<AuthenticationsBuilder> profile(){
 		if(null==profileBuilder)
 			profileBuilder=new Profile.ProfileBuilder<AuthenticationsBuilder>(this);
 		return profileBuilder;
 	}
 
-	/**
-     * Set the id property.
-     *
-     * @param id the id
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder id(final Id<Authentications> id){
-		authentications.setId(id);
-		return this;
-	}
-	
 	
 	/**
      * Set the deviceFingerprintingId property.
@@ -994,121 +982,121 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
      *
      * @param txnTime the txnTime
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder txnTime(final String txnTime){
 		authentications.setTxnTime(txnTime);
 		return this;
 	}
-	
+	*/
 	/**
      * Set the status property.
      *
      * @param status the status
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder status(final Status status){
 		authentications.setStatus(status);
 		return this;
 	}
-	
+	*/
 	/**
      * Set the acsURL property.
      *
      * @param acsURL the acsURL
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder acsURL(final String acsURL){
 		authentications.setAcsURL(acsURL);
 		return this;
-	}
+	}*/
 	
 	/**
      * Set the payload property.
      *
      * @param payload the payload
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder payload(final String payload){
 		authentications.setPayload(payload);
 		return this;
 	}
 	
-	/**
+	*//**
      * Set the threeDEnrollment property.
      *
      * @param threeDEnrollment the threeDEnrollment
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder threeDEnrollment(final ThreeDEnrollment threeDEnrollment){
 		authentications.setThreeDEnrollment(threeDEnrollment);
 		return this;
 	}
 	
-	/**
+	*//**
      * Set the threeDResult property.
      *
      * @param threeDResult the threeDResult
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder threeDResult(final ThreeDResult threeDResult){
 		authentications.setThreeDResult(threeDResult);
 		return this;
 	}
 	
-	/**
+	*//**
      * Set the threeDSecureVersion property.
      *
      * @param threeDSecureVersion the threeDSecureVersion
      * @return AuthenticationsBuilder
      */
-	public final AuthenticationsBuilder threeDSecureVersion(final String threeDSecureVersion){
+	/*public final AuthenticationsBuilder threeDSecureVersion(final String threeDSecureVersion){
 		authentications.setThreeDSecureVersion(threeDSecureVersion);
 		return this;
 	}
-	
+	*/
 	/**
      * Set the directoryServerTransactionId property.
      *
      * @param directoryServerTransactionId the directoryServerTransactionId
      * @return AuthenticationsBuilder
      */
-	public final AuthenticationsBuilder directoryServerTransactionId(final String directoryServerTransactionId){
+	/*public final AuthenticationsBuilder directoryServerTransactionId(final String directoryServerTransactionId){
 		authentications.setDirectoryServerTransactionId(directoryServerTransactionId);
 		return this;
 	}
-	
+	*/
 	/**
      * Set the eci property.
      *
      * @param eci the eci
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder eci(final Integer eci){
 		authentications.setEci(eci);
 		return this;
 	}
 	
-	/**
+	*//**
      * Set the cavv property.
      *
      * @param cavv the cavv
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder cavv(final String cavv){
 		authentications.setCavv(cavv);
 		return this;
 	}
 	
-	/**
+	*//**
      * Set the xid property.
      *
      * @param xid the xid
      * @return AuthenticationsBuilder
-     */
+     *//*
 	public final AuthenticationsBuilder xid(final String xid){
 		authentications.setXid(xid);
 		return this;
-	}
+	}*/
 	
 	/**
      * Set the sdkChallengePayload property.
@@ -1116,11 +1104,11 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
      * @param sdkChallengePayload the sdkChallengePayload
      * @return AuthenticationsBuilder
      */
-	public final AuthenticationsBuilder sdkChallengePayload(final String sdkChallengePayload){
+	/*public final AuthenticationsBuilder sdkChallengePayload(final String sdkChallengePayload){
 		authentications.setSdkChallengePayload(sdkChallengePayload);
 		return this;
 	}
-	
+	*/
 	/**
      * Set the transactionIntent property.
      *
