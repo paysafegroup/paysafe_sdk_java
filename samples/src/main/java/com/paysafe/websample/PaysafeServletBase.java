@@ -29,21 +29,18 @@ import java.util.logging.Logger;
 
 public abstract class PaysafeServletBase extends HttpServlet {
 
-  /**
-   *
-   */
   private static final long serialVersionUID = 1L;
   protected final String accountNumber;
   protected final String apiKey;
   protected final String apiPassword;
   protected final String currencyCode;
   protected final int currencyMultiplier;
-
+ 
   protected PaysafeServletBase() {
     super();
     Logger logger = Logger.getLogger(PaysafeServletBase.class.getName());
 
-    String apiKey = "", apiPassword = "", accountNumber = "", currencyCode = "", currencyMultiplier = "";
+    String apiKey = "", apiPassword = "", accountNumber = "", currencyCode = "", currencyMultiplier = "",apiKey_3DV2="",apiPassword_3DV2="",accountNumber_3DV2="";
 
     try {
       Properties props = new Properties();
@@ -51,19 +48,19 @@ public abstract class PaysafeServletBase extends HttpServlet {
       InputStream resourceStream = loader.getResourceAsStream("config.properties");
       props.load(resourceStream);
 
-      apiKey = props.getProperty("paysafeApiKeyId");
-      apiPassword = props.getProperty("paysafeApiKeySecret");
-      accountNumber = props.getProperty("paysafeAccountNumber");
+      apiKey = props.getProperty("apiKey");
+      apiPassword = props.getProperty("apiPassword");
+      accountNumber = props.getProperty("accountNumber");
       currencyCode = props.getProperty("currencyCode");
       currencyMultiplier = props.getProperty("currencyBaseUnitsMultiplier");
-
-      logger.log(Level.INFO, "paysafeApiKeyId [{0}]", apiKey);
-      logger.log(Level.INFO, "paysafeApiKeySecret [{0}]", apiPassword);
-      logger.log(Level.INFO, "paysafeAccountNumber [{0}]", accountNumber);
+      
+      logger.log(Level.INFO, "apiKey [{0}]", apiKey);
+      logger.log(Level.INFO, "apiPassword [{0}]", apiPassword);
+      logger.log(Level.INFO, "accountNumber [{0}]", accountNumber);
       logger.log(Level.INFO, "currencyCode [{0}]", currencyCode);
       logger.log(Level.INFO, "currencyBaseUnitsMultiplier [{0}]", currencyMultiplier);
-
-    } catch (IOException ex) {
+      
+     } catch (IOException ex) {
 
       logger.log(Level.WARNING, "Unable to load config properties", ex);
     }
@@ -73,6 +70,5 @@ public abstract class PaysafeServletBase extends HttpServlet {
     this.accountNumber = accountNumber;
     this.currencyCode = currencyCode;
     this.currencyMultiplier = Integer.parseInt(currencyMultiplier);
-
-  }
+    }
 }

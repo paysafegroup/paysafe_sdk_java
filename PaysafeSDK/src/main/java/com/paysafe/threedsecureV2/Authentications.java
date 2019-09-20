@@ -52,9 +52,9 @@ public class Authentications implements BaseDomainObject {
 	
 	private Status status;
 	
-	/** The acsURL. */
+	/** The acsUrl. */
 	
-	private String acsURL;
+	private String acsUrl;
 	
 	/** The payload. */
 	
@@ -159,9 +159,6 @@ public class Authentications implements BaseDomainObject {
 	/** The profile. */
 	
 	private SignatureStatus signatureStatus;
-	
-	/** The links. */
-//	private ArrayList<Link> links;
 	
 	
 /**
@@ -321,20 +318,20 @@ public void setStatus(Status status) {
 	this.status = status;
 }
 /**
- * Gets the acsURL.
+ * Gets the acsUrl.
  *
- * @return the acsURL
+ * @return the acsUrl
  */
-public String getAcsURL() {
-	return acsURL;
+public String getAcsUrl() {
+	return acsUrl;
 }
 /**
  * Sets the acsURL.
  *
  * @param acsURL the new acsURL
  */
-public void setAcsURL(String acsURL) {
-	this.acsURL = acsURL;
+public void setAcsUrl(String acsUrl) {
+	this.acsUrl = acsUrl;
 }
 /**
  * Gets the payload.
@@ -737,23 +734,7 @@ public Profile getProfile() {
 public void setProfile(Profile profile) {
 	this.profile = profile;
 }
-/**
- * Gets the links.
- *
- * @return the links
- */	
-//public ArrayList<Link> getLinks() {
-//		return links;
-//}
 
-/**
- * Sets the links.
- *
- * @param links the new links
- */
-//public void setLinks(ArrayList<Link> links) {
-//		this.links = links;
-// }
 /**
  * Gets the signatureStatus.
  *
@@ -921,29 +902,6 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 		return profileBuilder;
 	}
 
-	
-	/**
-     * Set the deviceFingerprintingId property.
-     *
-     * @param deviceFingerprintingId thedeviceFingerprintingId
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder deviceFingerprintingId(final String deviceFingerprintingId){
-		authentications.setDeviceFingerprintingId(deviceFingerprintingId);
-		return this;
-	}
-	
-	/**
-     * Set the merchantRefNum property.
-     *
-     * @param merchantRefNum the merchant Ref Num
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder merchantRefNum(final String merchantRefNum){
-		authentications.setMerchantRefNum(merchantRefNum);
-		return this;
-	}
-	
 	/**
      * Set the amount property.
      *
@@ -967,6 +925,17 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 	}
 	
 	/**
+     * Set the merchantRefNum property.
+     *
+     * @param merchantRefNum the merchant Ref Num
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder merchantRefNum(final String merchantRefNum){
+		authentications.setMerchantRefNum(merchantRefNum);
+		return this;
+	}
+	
+	/**
      * Set the merchantUrl property.
      *
      * @param merchantUrl the merchantUrl
@@ -978,167 +947,13 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 	}
 	
 	/**
-     * Set the txnTime property.
+     * Set the deviceFingerprintingId property.
      *
-     * @param txnTime the txnTime
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder txnTime(final String txnTime){
-		authentications.setTxnTime(txnTime);
-		return this;
-	}
-	*/
-	/**
-     * Set the status property.
-     *
-     * @param status the status
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder status(final Status status){
-		authentications.setStatus(status);
-		return this;
-	}
-	*/
-	/**
-     * Set the acsURL property.
-     *
-     * @param acsURL the acsURL
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder acsURL(final String acsURL){
-		authentications.setAcsURL(acsURL);
-		return this;
-	}*/
-	
-	/**
-     * Set the payload property.
-     *
-     * @param payload the payload
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder payload(final String payload){
-		authentications.setPayload(payload);
-		return this;
-	}
-	
-	*//**
-     * Set the threeDEnrollment property.
-     *
-     * @param threeDEnrollment the threeDEnrollment
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder threeDEnrollment(final ThreeDEnrollment threeDEnrollment){
-		authentications.setThreeDEnrollment(threeDEnrollment);
-		return this;
-	}
-	
-	*//**
-     * Set the threeDResult property.
-     *
-     * @param threeDResult the threeDResult
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder threeDResult(final ThreeDResult threeDResult){
-		authentications.setThreeDResult(threeDResult);
-		return this;
-	}
-	
-	*//**
-     * Set the threeDSecureVersion property.
-     *
-     * @param threeDSecureVersion the threeDSecureVersion
+     * @param deviceFingerprintingId thedeviceFingerprintingId
      * @return AuthenticationsBuilder
      */
-	/*public final AuthenticationsBuilder threeDSecureVersion(final String threeDSecureVersion){
-		authentications.setThreeDSecureVersion(threeDSecureVersion);
-		return this;
-	}
-	*/
-	/**
-     * Set the directoryServerTransactionId property.
-     *
-     * @param directoryServerTransactionId the directoryServerTransactionId
-     * @return AuthenticationsBuilder
-     */
-	/*public final AuthenticationsBuilder directoryServerTransactionId(final String directoryServerTransactionId){
-		authentications.setDirectoryServerTransactionId(directoryServerTransactionId);
-		return this;
-	}
-	*/
-	/**
-     * Set the eci property.
-     *
-     * @param eci the eci
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder eci(final Integer eci){
-		authentications.setEci(eci);
-		return this;
-	}
-	
-	*//**
-     * Set the cavv property.
-     *
-     * @param cavv the cavv
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder cavv(final String cavv){
-		authentications.setCavv(cavv);
-		return this;
-	}
-	
-	*//**
-     * Set the xid property.
-     *
-     * @param xid the xid
-     * @return AuthenticationsBuilder
-     *//*
-	public final AuthenticationsBuilder xid(final String xid){
-		authentications.setXid(xid);
-		return this;
-	}*/
-	
-	/**
-     * Set the sdkChallengePayload property.
-     *
-     * @param sdkChallengePayload the sdkChallengePayload
-     * @return AuthenticationsBuilder
-     */
-	/*public final AuthenticationsBuilder sdkChallengePayload(final String sdkChallengePayload){
-		authentications.setSdkChallengePayload(sdkChallengePayload);
-		return this;
-	}
-	*/
-	/**
-     * Set the transactionIntent property.
-     *
-     * @param transactionIntent the transactionIntent
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder transactionIntent(final TransactionIntent transactionIntent){
-		authentications.setTransactionIntent(transactionIntent);
-		return this;
-	}
-	
-	/**
-     * Set the maxAuthorizationsForInstalmentPayment property.
-     *
-     * @param maxAuthorizationsForInstalmentPayment the maxAuthorizationsForInstalmentPayment
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder maxAuthorizationsForInstalmentPayment(final Integer maxAuthorizationsForInstalmentPayment){
-		authentications.setMaxAuthorizationsForInstalmentPayment(maxAuthorizationsForInstalmentPayment);
-		return this;
-	}
-	
-	/**
-     * Set the authenticationPurpose property.
-     *
-     * @param authenticationPurpose the authenticationPurpose
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder authenticationPurpose(final AuthenticationPurpose authenticationPurpose){
-		authentications.setAuthenticationPurpose(authenticationPurpose);
+	public final AuthenticationsBuilder deviceFingerprintingId(final String deviceFingerprintingId){
+		authentications.setDeviceFingerprintingId(deviceFingerprintingId);
 		return this;
 	}
 	
@@ -1154,6 +969,17 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 	}
 	
 	/**
+     * Set the requestorChallengePreference property.
+     *
+     * @param requestorChallengePreference the requestor Challenge Preference
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder requestorChallengePreference(final RequestorChallengePreference requestorChallengePreference){
+		authentications.setRequestorChallengePreference(requestorChallengePreference);
+		return this;
+	}
+	
+	/**
      * Set the messageCategory property.
      *
      * @param messageCategory the messageCategory
@@ -1163,6 +989,38 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 		authentications.setMessageCategory(messageCategory);
 		return this;
 	}
+	
+	/**
+     * Set the transactionIntent property.
+     *
+     * @param transactionIntent the transactionIntent
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder transactionIntent(final TransactionIntent transactionIntent){
+		authentications.setTransactionIntent(transactionIntent);
+		return this;
+	}
+	/**
+     * Set the authenticationPurpose property.
+     *
+     * @param authenticationPurpose the authenticationPurpose
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder authenticationPurpose(final AuthenticationPurpose authenticationPurpose){
+		authentications.setAuthenticationPurpose(authenticationPurpose);
+		return this;
+	}
+	/**
+     * Set the maxAuthorizationsForInstalmentPayment property.
+     *
+     * @param maxAuthorizationsForInstalmentPayment the maxAuthorizationsForInstalmentPayment
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder maxAuthorizationsForInstalmentPayment(final Integer maxAuthorizationsForInstalmentPayment){
+		authentications.setMaxAuthorizationsForInstalmentPayment(maxAuthorizationsForInstalmentPayment);
+		return this;
+	}
+	
 	/**
      * Set the initialPurchaseTime property.
      *
@@ -1171,17 +1029,6 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
      */
 	public final AuthenticationsBuilder initialPurchaseTime(final String initialPurchaseTime){
 		authentications.setInitialPurchaseTime(initialPurchaseTime);
-		return this;
-	}
-	
-	/**
-     * Set the requestorChallengePreference property.
-     *
-     * @param requestorChallengePreference the requestor Challenge Preference
-     * @return AuthenticationsBuilder
-     */
-	public final AuthenticationsBuilder requestorChallengePreference(final RequestorChallengePreference requestorChallengePreference){
-		authentications.setRequestorChallengePreference(requestorChallengePreference);
 		return this;
 	}
   }
