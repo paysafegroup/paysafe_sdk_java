@@ -32,6 +32,9 @@ public class BillingDetails implements DomainObject {
 	  /** The zip. */
 	  @Expose
 	  private String zip;
+	  
+	  /** The useAsShippingAddress. */
+	  private Boolean useAsShippingAddress;
 	
 	  /**
 	   * Gets the street.
@@ -129,8 +132,24 @@ public class BillingDetails implements DomainObject {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+	/**
+	   * Gets the useAsShippingAddress.
+	   *
+	   * @return the useAsShippingAddress
+	   */
+	public Boolean getUseAsShippingAddress() {
+		return useAsShippingAddress;
+	}
+	/**
+	 * Sets the useAsShippingAddress.
+	 *
+	 * @param useAsShippingAddress the new useAsShippingAddress
+	 */
+	public void setUseAsShippingAddress(Boolean useAsShippingAddress) {
+		this.useAsShippingAddress = useAsShippingAddress;
+	}
 
-/**
+  /**
    * The sub-builder class for BillingDetails.
    *
    * @param <BLDRT> the parent builder
@@ -157,10 +176,7 @@ public class BillingDetails implements DomainObject {
       super(parent);
     }
 
-   
-   
-
-    /**
+     /**
      * Set the street property.
      *
      * @param street the street

@@ -1,7 +1,6 @@
 package com.paysafe.threedsecureV2;
 
 import com.google.gson.annotations.Expose;
-import com.paysafe.common.Carrier;
 import com.paysafe.common.ShipMethod;
 import com.paysafe.common.impl.DomainObject;
 import com.paysafe.common.impl.GenericBuilder;
@@ -12,21 +11,9 @@ import com.paysafe.common.impl.NestedBuilder;
  */
 public class ShippingDetails implements DomainObject {
 
-	/** The carrier. */
-	 @Expose
-	  private Carrier carrier;
-	  
-	  /** The ship method. */
+	 /** The ship method. */
 	  @Expose
 	  private ShipMethod shipMethod;
-	  
-	  /** The recipient name. */
-	  
-	  private String recipientName;
-	  
-	  /** The company. */
-	  @Expose
-	  private String company;
 	  
 	  /** The street. */
 	  @Expose
@@ -52,25 +39,6 @@ public class ShippingDetails implements DomainObject {
 	  @Expose
 	  private String zip;
 	  
-
-	  /**
-	   * Gets the recipient name.
-	   *
-	   * @return the recipient name
-	   */
-	  public final String getRecipientName() {
-	    return recipientName;
-	  }
-
-	  /**
-	   * Sets the recipient name.
-	   *
-	   * @param recipientName the new recipient name
-	   */
-	  public final void setRecipientName(final String recipientName) {
-	    this.recipientName = recipientName;
-	  }
-	  
 	  /**
 	   * Gets the ship method.
 	   *
@@ -89,24 +57,6 @@ public class ShippingDetails implements DomainObject {
 		    this.shipMethod = shipMethod;
 		  }
 
-	  /**
-	   * Gets the carrier.
-	   *
-	   * @return the carrier
-	   */
-	  public final Carrier getCarrier() {
-	    return carrier;
-	  }
-
-	  /**
-	   * Sets the carrier.
-	   *
-	   * @param carrier the new carrier
-	   */
-	  public final void setCarrier(final Carrier carrier) {
-	    this.carrier = carrier;
-	  }
-	  
 	  /**
 	   * Gets the street.
 	   *
@@ -216,22 +166,6 @@ public class ShippingDetails implements DomainObject {
 		  }
 
 	  /**
-	   * Gets the company.
-	   *
-	   * @return the company
-	   */
-	  public String getCompany() {
-			return company;
-		}
-	  /**
-	   * Sets the company.
-	   *
-	   * @param company the new company
-	   */
-		public void setCompany(String company) {
-			this.company = company;
-		}
-	  /**
 	   * The sub-builder class for ShippingDetails.
 	   *
 	   * @param <BLDRT> the parent builder
@@ -318,19 +252,7 @@ public class ShippingDetails implements DomainObject {
 	      shippingDetails.setZip(zip);
 	      return this;
 	    }
-
-
-	    /**
-	     * Set the carrier property.
-	     *
-	     * @param carrier the carrier
-	     * @return ShippingDetailsBuilder< BLDRT >
-	     */
-	    public final ShippingDetailsBuilder<BLDRT> carrier(final Carrier carrier) {
-	      shippingDetails.setCarrier(carrier);
-	      return this;
-	    }
-
+	    
 	    /**
 	     * Set the shipMethod property.
 	     *
@@ -341,6 +263,6 @@ public class ShippingDetails implements DomainObject {
 	      shippingDetails.setShipMethod(shipMethod);
 	      return this;
 	    }
-	    }
+	  }
 	}
 

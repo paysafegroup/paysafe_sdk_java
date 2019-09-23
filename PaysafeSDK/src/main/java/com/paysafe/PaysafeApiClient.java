@@ -48,7 +48,7 @@ import com.paysafe.customervault.CustomerVaultService;
 import com.paysafe.directdebit.DirectDebitService;
 import com.paysafe.threedsecure.ThreeDSecureService;
 import com.paysafe.threedsecureV2.ThreeDSecureV2Service;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * The Class PaysafeApiClient.
  */

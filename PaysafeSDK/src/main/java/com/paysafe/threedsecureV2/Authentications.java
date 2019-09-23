@@ -156,12 +156,23 @@ public class Authentications implements BaseDomainObject {
 	@Expose
 	private Profile profile;
 	
-	/** The profile. */
+	/** The signature Status. */
 	
 	private SignatureStatus signatureStatus;
 	
+	/** The threeDSecureServerTransactionId. */
+	private String threeDSecureServerTransactionId;
 	
-/**
+	/** The Merchant Category Code. */
+	@Expose
+	private String mcc;
+	
+	/** The merchantName. */
+	@Expose
+	private String merchantName;
+	
+	
+ /**
   * Gets the id.
   *
   * @return the id
@@ -747,10 +758,64 @@ public SignatureStatus getSignatureStatus() {
 /**
  * Sets the signatureStatus.
  *
- * @param signatureStatus the new signatureStatus
+ * @param mcc the new signatureStatus
  */
 public void setSignatureStatus(SignatureStatus signatureStatus) {
 	this.signatureStatus = signatureStatus;
+}
+
+/**
+ * Gets the threeDSecureServerTransactionId.
+ *
+ * @return the threeDSecureServerTransactionId
+ */
+public String getThreeDSecureServerTransactionId() {
+	return threeDSecureServerTransactionId;
+}
+
+/**
+ * Sets the threeDSecureServerTransactionId.
+ *
+ * @param threeDSecureServerTransactionId the new threeDSecureServerTransactionId
+ */
+public void setThreeDSecureServerTransactionId(String threeDSecureServerTransactionId) {
+	this.threeDSecureServerTransactionId = threeDSecureServerTransactionId;
+}
+
+/**
+ * Gets the mcc.
+ *
+ * @return the mcc
+ */
+public String getMcc() {
+	return mcc;
+}
+
+/**
+ * Sets the mcc.
+ *
+ * @param mcc the new mcc
+ */
+public void setMcc(String mcc) {
+	this.mcc = mcc;
+}
+
+/**
+ * Gets the merchantName.
+ *
+ * @return the merchantName
+ */
+public String getMerchantName() {
+	return merchantName;
+}
+
+/**
+ * Sets the merchantName.
+ *
+ * @param merchantName the new merchantName
+ */
+public void setMerchantName(String merchantName) {
+	this.merchantName = merchantName;
 }
 /**
  * Get an Authentications builder.
@@ -1011,9 +1076,9 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
 		return this;
 	}
 	/**
-     * Set the maxAuthorizationsForInstalmentPayment property.
+     * Set the maxAuthorizations For Instalment Payment property.
      *
-     * @param maxAuthorizationsForInstalmentPayment the maxAuthorizationsForInstalmentPayment
+     * @param maxAuthorizations For Instalment Payment the maxAuthorizations For Instalment Payment
      * @return AuthenticationsBuilder
      */
 	public final AuthenticationsBuilder maxAuthorizationsForInstalmentPayment(final Integer maxAuthorizationsForInstalmentPayment){
@@ -1029,6 +1094,26 @@ public static class AuthenticationsBuilder extends BaseBuilder<Authentications>{
      */
 	public final AuthenticationsBuilder initialPurchaseTime(final String initialPurchaseTime){
 		authentications.setInitialPurchaseTime(initialPurchaseTime);
+		return this;
+	}
+	/**
+     * Set the mcc property.
+     *
+     * @param mcc the mcc
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder mcc(final String mcc){
+		authentications.setMcc(mcc);
+		return this;
+	}
+	/**
+     * Set the merchantName property.
+     *
+     * @param merchantName the merchantName
+     * @return AuthenticationsBuilder
+     */
+	public final AuthenticationsBuilder merchantName(final String merchantName){
+		authentications.setMerchantName(merchantName);
 		return this;
 	}
   }
