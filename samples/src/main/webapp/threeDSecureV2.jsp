@@ -59,7 +59,7 @@
             if (request.getAttribute("isPost") == "true" && request.getParameter("amount") != null) {
               out.print(request.getParameter("amount"));
             } else {
-              out.print("99999999");
+              out.print("99999999999");
             }
             %>"/>
           </label>
