@@ -40,7 +40,7 @@ public abstract class PaysafeServletBase extends HttpServlet {
     super();
     Logger logger = Logger.getLogger(PaysafeServletBase.class.getName());
 
-    String apiKey = "", apiPassword = "", accountNumber = "", currencyCode = "", currencyMultiplier = "",apiKey_3DV2="",apiPassword_3DV2="",accountNumber_3DV2="";
+    String apiKey = "", apiPassword = "", accountNumber = "", currencyCode = "", currencyMultiplier = "";
 
     try {
       Properties props = new Properties();

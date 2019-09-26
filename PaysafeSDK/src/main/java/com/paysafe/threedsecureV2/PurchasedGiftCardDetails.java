@@ -12,7 +12,7 @@ public class PurchasedGiftCardDetails implements DomainObject {
 
 	/** This is the amount of the giftcard. */
 	@Expose
-	private Integer amount;
+	private Long amount;
 
 	/** Total count of individual gift cards. */
 	@Expose
@@ -27,7 +27,7 @@ public class PurchasedGiftCardDetails implements DomainObject {
 	 *
 	 * @return the amount
 	 */
-	public Integer getAmount() {
+	public Long getAmount() {
 		return amount;
 	}
 
@@ -37,7 +37,7 @@ public class PurchasedGiftCardDetails implements DomainObject {
 	 * @param amount the new amount
 	 *            
 	 */
-	public void setAmount(Integer amount) {
+	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
 
@@ -102,7 +102,7 @@ public class PurchasedGiftCardDetails implements DomainObject {
 		 *           
 		 * @return PurchasedGiftCardDetailsBuilder
 		 */
-		public final PurchasedGiftCardDetailsBuilder<BLDRT> amount(final Integer amount) {
+		public final PurchasedGiftCardDetailsBuilder<BLDRT> amount(final Long amount) {
 			purchasedGiftCardDetails.setAmount(amount);
 			return this;
 		}

@@ -11,6 +11,7 @@ import com.paysafe.common.impl.NestedBuilder;
 public class ElectronicDelivery implements DomainObject {
 
 	/** the email address */
+	@Expose
 	private String email;
 	/** Marks if there is an electronic delivery for the product */
 	@Expose
@@ -69,6 +70,17 @@ public class ElectronicDelivery implements DomainObject {
 		@Override
 		public ElectronicDelivery build() {
 			return electronicDelivery;
+		}
+		/**
+		 * Set the email property.
+		 *
+		 * @param email the email
+		 *            
+		 * @return ElectronicDeliveryBuilder
+		 */
+		public final ElectronicDeliveryBuilder<BLDRT> email(final String email){
+			electronicDelivery.setEmail(email);
+			return this;
 		}
 
 		/**
