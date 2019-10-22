@@ -22,6 +22,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 
+import com.paysafe.cardpayments.Authorization.AuthorizationBuilder;
 import com.paysafe.common.Error;
 import com.paysafe.common.Id;
 import com.paysafe.common.Link;
@@ -103,6 +104,10 @@ public class Verification implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
+  
+  /**The StoredCredential. */
+  @Expose
+  private StoredCredential storedCredential;
 
   /**
    * Gets the id.
@@ -480,6 +485,23 @@ public class Verification implements BaseDomainObject {
   public final void setLinks(final ArrayList<Link> links) {
     this.links = links;
   }
+  
+  /**
+   * Gets the storedCredential.
+   *
+   * @return the storedCredential
+   */
+  public final StoredCredential getStoredCredential() {
+	return storedCredential;
+}
+/**
+   * Sets the storedCredential.
+   *
+   * @param storedCredential the new storedCredential
+   */
+public final void setStoredCredentials(StoredCredential storedCredential) {
+	this.storedCredential = storedCredential;
+}
 
   /**
    * Get a Verification builder.
@@ -508,8 +530,10 @@ public class Verification implements BaseDomainObject {
     private BillingDetails.BillingDetailsBuilder<VerificationBuilder> billingDetailsBuilder;
     
     /** The merchant descriptor builder. */
-    private MerchantDescriptor.MerchantDescriptorBuilder<
-            VerificationBuilder> merchantDescriptorBuilder;
+    private MerchantDescriptor.MerchantDescriptorBuilder<VerificationBuilder> merchantDescriptorBuilder;
+    /**The Stored Credential Builder. */
+    private StoredCredential.StoredCredentialBuilder<VerificationBuilder>storedCredentialBuilder;
+
 
     /**
      * Build this Verification object.
@@ -526,6 +550,9 @@ public class Verification implements BaseDomainObject {
       }
       if (null != merchantDescriptorBuilder) {
         verification.setMerchantDescriptor(merchantDescriptorBuilder.build());
+      }
+      if(null !=storedCredentialBuilder){
+    	  verification.setStoredCredentials(storedCredentialBuilder.build());
       }
       return verification;
     }
@@ -673,6 +700,19 @@ public class Verification implements BaseDomainObject {
     public final VerificationBuilder description(final String description) {
       verification.setDescription(description);
       return this;
+    }
+    
+    /**
+     * Add details from a Stored credentials to this Stored credentials object.
+     *
+     * @param a the a
+     * @return VerificationBuilder
+     */	
+    public final StoredCredential.StoredCredentialBuilder<VerificationBuilder> storedCredential(){
+    	if(null==storedCredentialBuilder){
+    		storedCredentialBuilder=new StoredCredential.StoredCredentialBuilder<VerificationBuilder>(this);
+    	}
+    	return storedCredentialBuilder;
     }
   }
 }

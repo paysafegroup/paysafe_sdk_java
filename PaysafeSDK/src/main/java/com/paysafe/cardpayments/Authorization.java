@@ -18,10 +18,9 @@
  */
 package com.paysafe.cardpayments;
 
-import com.google.gson.annotations.Expose;
-
 import java.util.ArrayList;
 
+import com.google.gson.annotations.Expose;
 import com.paysafe.common.Error;
 import com.paysafe.common.Id;
 import com.paysafe.common.Link;
@@ -140,6 +139,10 @@ public class Authorization implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
+  
+  /**The StoredCredential. */
+  @Expose
+  private StoredCredential storedCredential;
 
   /**
    * Gets the id.
@@ -666,7 +669,6 @@ public class Authorization implements BaseDomainObject {
   /* (non-Javadoc)
    * @see com.optimalpayments.common.impl.BaseDomainObject#getError()
    */
-  @Override
   public final Error getError() {
     return error;
   }
@@ -697,6 +699,22 @@ public class Authorization implements BaseDomainObject {
   public final void setLinks(final ArrayList<Link> links) {
     this.links = links;
   }
+  /**
+   * Gets the storedCredential.
+   *
+   * @return the storedCredential
+   */
+  public final StoredCredential getStoredCredential() {
+	return storedCredential;
+}
+/**
+   * Sets the storedCredential.
+   *
+   * @param storedCredential the new storedCredential
+   */
+public final void setStoredCredentials(StoredCredential storedCredential) {
+	this.storedCredential = storedCredential;
+}
 
   /**
    * Get an authorization builder.
@@ -723,15 +741,17 @@ public class Authorization implements BaseDomainObject {
     
     /** The shipping details builder. */
     private ShippingDetails.ShippingDetailsBuilder<AuthorizationBuilder> shippingDetailsBuilder;
-    
+   
     /** The merchant descriptor builder. */
-    private MerchantDescriptor.MerchantDescriptorBuilder<
-            AuthorizationBuilder> merchantDescriptorBuilder;
+    private MerchantDescriptor.MerchantDescriptorBuilder<AuthorizationBuilder> merchantDescriptorBuilder;
     
     /** The accord d builder. */
     private AccordD.AccordDBuilder<AuthorizationBuilder> accordDBuilder;
     
-    /** The authorization. */
+	/**The Stored Credential Builder. */
+    private StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>storedCredentialBuilder;
+    
+     /** The authorization. */
     private final Authorization authorization = new Authorization();
 
     /**
@@ -758,6 +778,9 @@ public class Authorization implements BaseDomainObject {
       }
       if (null != accordDBuilder) {
         authorization.setAccordD(accordDBuilder.build());
+      }
+      if(null !=storedCredentialBuilder){
+    	  authorization.setStoredCredentials(storedCredentialBuilder.build());
       }
       return authorization;
     }
@@ -892,6 +915,19 @@ public class Authorization implements BaseDomainObject {
       shippingDetailsBuilder = new ShippingDetails.ShippingDetailsBuilder<
                 AuthorizationBuilder>(this, a);
       return this;
+    }
+	
+	 /**
+     * Add details from a Stored credentials to this Stored credentials object.
+     *
+     * @param a the a
+     * @return AuthorizationBuilder
+     */	
+    public final StoredCredential.StoredCredentialBuilder<AuthorizationBuilder> storedCredential(){
+    	if(null==storedCredentialBuilder){
+    		storedCredentialBuilder=new StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>(this);
+    	}
+    	return storedCredentialBuilder;
     }
 
     /**
