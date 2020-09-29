@@ -77,6 +77,7 @@ public class Card implements BaseDomainObject {
   private Id<Address> billingAddressId;
   
   /** The default card indicator. */
+  @Expose
   private Boolean defaultCardIndicator;
   
   /** The payment token. */
