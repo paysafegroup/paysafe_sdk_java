@@ -36,5 +36,9 @@ public enum Locale {
   
   /** The fr ca. */
   @SerializedName("fr_CA")
-  FR_CA
+  FR_CA,
+
+  /** The en ca. */
+  @SerializedName("en_CA")
+  EN_CA
 }
