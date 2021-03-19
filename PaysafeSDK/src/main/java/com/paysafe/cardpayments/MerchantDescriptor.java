@@ -83,18 +83,18 @@ public class MerchantDescriptor implements DomainObject {
   }
 
   /**
-   * Gets retailer's county.
+   * Gets retailer's country.
    *
-   * @return retailer's county
+   * @return retailer's country
    */
   public String getCountry() {
     return country;
   }
 
   /**
-   * Sets the county.
+   * Sets the retailer's country.
    *
-   * @param country the retailer's county
+   * @param country the retailer's country
    */
   public void setCountry(String country) {
     this.country = country;
@@ -110,7 +110,7 @@ public class MerchantDescriptor implements DomainObject {
   }
 
   /**
-   * Sets the city.
+   * Sets the retailer's city.
    *
    * @param city the retailer's city
    */
@@ -173,9 +173,9 @@ public class MerchantDescriptor implements DomainObject {
     }
 
     /**
-     * Set the city property.
+     * Set the retailer's city
      *
-     * @param city the city descriptor
+     * @param city the city property
      * @return MerchantDescriptorBuilder<BLDRT>
      */
     public final MerchantDescriptorBuilder<BLDRT> city(final String city) {
@@ -184,12 +184,12 @@ public class MerchantDescriptor implements DomainObject {
     }
 
     /**
-     * Set the country property.
+     * Set the retailer's country
      *
-     * @param country the country
+     * @param country the country property
      * @return MerchantDescriptorBuilder<BLDRT>
      */
-    public final MerchantDescriptorBuilder<BLDRT> county(final String country) {
+    public final MerchantDescriptorBuilder<BLDRT> country(final String country) {
       merchantDescriptor.setCountry(country);
       return this;
     }
