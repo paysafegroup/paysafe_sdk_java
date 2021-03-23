@@ -1,15 +1,15 @@
 /*
  * Copyright (c) 2016 Paysafe
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction,
  * including without limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or
  * substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
  * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -103,20 +103,31 @@ public class PaysafeApiClient {
 	 * The ThreeDSV2Service.
 	 */
 	private ThreeDSecureV2Service threeDSV2Service;
+
 	/**
 	 * The gson object used to deserialize the api response.
 	 */
 	private final Gson gsonDeserializer;
 
 	/**
+	 * Timeout, in milliseconds, which is used when reading from input stream.
+	 */
+	private int readTimeout;
+
+	/**
+	 * Timeout, in milliseconds, to be set when a new URLConnection is opened.
+	 */
+	private int connectionTimeout;
+
+	/**
 	 * Instantiates a new paysafe API client.
 	 *
 	 * @param keyId the key id
-	 *            
+	 *
 	 * @param keyPassword the key password
-	 *            
+	 *
 	 * @param environment the environment
-	 *           
+	 *
 	 */
 	public PaysafeApiClient(final String keyId, final String keyPassword, final Environment environment) {
 		this.keyId = keyId;
@@ -134,18 +145,63 @@ public class PaysafeApiClient {
 	 * Instantiates a new paysafe API client.
 	 *
 	 * @param keyId the key id
-	 *            
+	 *
 	 * @param keyPassword the key password
-	 *            
+	 *
 	 * @param environment the environment
-	 *            
+	 *
 	 * @param account the account number
-	 *           
+	 *
 	 */
 	public PaysafeApiClient(final String keyId, final String keyPassword, final Environment environment,
 			final String account) {
 		this(keyId, keyPassword, environment);
 		this.setAccount(account);
+	}
+
+	/**
+	 * Create a connection from a request and return a specified type.
+	 *
+	 * @param <T> an extension of BaseDomainObject
+	 * @param request the Request object to be processed
+	 * @param returnType the class that will be returned
+	 * @return the t
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws PaysafeException the paysafe exception
+	 *
+	 */
+	public final <T extends BaseDomainObject> T processRequest(final Request request, Class<T> returnType)
+		throws IOException, PaysafeException {
+		final URL url = new URL(request.buildUrl(apiEndPoint));
+		final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+		try {
+			connection.setRequestProperty("Authorization", "Basic " + getAuthenticatedString());
+			connection.setRequestMethod(request.getMethod().toString());
+			connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+			connection.setRequestProperty("SDK-Type", "Paysafe_Java_SDK");
+			connection.setReadTimeout(readTimeout);
+			connection.setConnectTimeout(connectionTimeout);
+
+			// Write to the stream if we can
+			if (request.getMethod().equals(Request.RequestType.POST)
+				|| (request.getMethod().equals(Request.RequestType.PUT))) {
+				connection.setDoOutput(true);
+
+				final OutputStream os = connection.getOutputStream();
+				final DataOutputStream dos = new DataOutputStream(os);
+				try {
+					dos.write(serializeObject(request, returnType).getBytes(StandardCharsets.UTF_8));
+					dos.flush();
+				} finally {
+					dos.close();
+					os.close();
+				}
+			}
+
+			return getReturnObject(connection, returnType);
+		} finally {
+			connection.disconnect();
+		}
 	}
 
 	/**
@@ -211,14 +267,48 @@ public class PaysafeApiClient {
 	}
 
 	/**
+	 * Sets the account.
+	 *
+	 * @param accountNumber the new account
+	 */
+	public final void setAccount(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	/**
+	 * Gets the account.
+	 *
+	 * @return the account
+	 */
+	public final String getAccount() {
+		return accountNumber;
+	}
+
+	/**
+	 * Sets the read timeout when reading from input stream when a connection is established to a resource.
+	 * @param readTimeout read timeout in milliseconds. Must be >= 0
+	 */
+	public void setReadTimeout(int readTimeout) {
+		this.readTimeout = readTimeout;
+	}
+
+	/**
+	 * Sets the connection timeout when a new connection is opened.
+	 * @param connectionTimeout connection timeout in milliseconds. Must be >= 0
+	 */
+	public void setConnectionTimeout(int connectionTimeout) {
+		this.connectionTimeout = connectionTimeout;
+	}
+
+	/**
 	 * Process error.
 	 *
 	 * @param code the response code
-	 *            
+	 *
 	 * @param obj the obj
-	 *             
+	 *
 	 * @param cause the original exception
-	 *            
+	 *
 	 * @return the exception
 	 */
 	private PaysafeException getException(final int code, final BaseDomainObject obj, final IOException cause) {
@@ -239,49 +329,6 @@ public class PaysafeApiClient {
 		case 415:
 		default:
 			return new ApiException(obj, cause);
-		}
-	}
-
-	/**
-	 * Create a connection from a request and return a specified type.
-	 *
-	 * @param <T> an extension of BaseDomainObject          
-	 * @param request the Request object to be processed           
-	 * @param returnType the class that will be returned           
-	 * @return the t          
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws PaysafeException the paysafe exception
-	 *             
-	 */
-	public final <T extends BaseDomainObject> T processRequest(final Request request, Class<T> returnType)
-			throws IOException, PaysafeException {
-		final URL url = new URL(request.buildUrl(apiEndPoint));
-	    final HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-		try {
-			connection.setRequestProperty("Authorization", "Basic " + getAuthenticatedString());
-			connection.setRequestMethod(request.getMethod().toString());
-			connection.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-			connection.setRequestProperty("SDK-Type", "Paysafe_Java_SDK");
-
-			// Write to the stream if we can
-			if (request.getMethod().equals(Request.RequestType.POST)
-					|| (request.getMethod().equals(Request.RequestType.PUT))) {
-				connection.setDoOutput(true);
-
-				final OutputStream os = connection.getOutputStream();
-				final DataOutputStream dos = new DataOutputStream(os);
-				try {
-					dos.write(serializeObject(request, returnType).getBytes(StandardCharsets.UTF_8));
-					dos.flush();
-				} finally {
-					dos.close();
-					os.close();
-				}
-			}
-			
-			return getReturnObject(connection, returnType);
-		} finally {
-			connection.disconnect();
 		}
 	}
 
@@ -352,24 +399,6 @@ public class PaysafeApiClient {
 		}
 		final Gson gson = gsonBuilder.create();
 		return gson.toJson(request.getBody());
-	}
-
-	/**
-	 * Sets the account.
-	 *
-	 * @param accountNumber the new account
-	 */
-	public final void setAccount(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	/**
-	 * Gets the account.
-	 *
-	 * @return the account
-	 */
-	public final String getAccount() {
-		return accountNumber;
 	}
 
 	/**
