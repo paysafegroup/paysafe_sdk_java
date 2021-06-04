@@ -740,7 +740,21 @@ public class CustomerVaultService {
    * @throws PaysafeException the paysafe exception
    */
   public final Profile lookup(final Profile profile) throws IOException, PaysafeException {
-    return lookup(profile, false, false);
+    if (profile.getMerchantCustomerId() != null && profile.getId() == null) {
+      HashMap<String, String> queryStr = new HashMap<>();
+      queryStr.put("merchantCustomerId", profile.getMerchantCustomerId());
+
+      final Request request = Request.builder()
+              .uri(prepareUri(PROFILE_PATH))
+              .method(Request.RequestType.GET)
+              .queryStr(queryStr)
+              .build();
+
+      Profile returnVal = client.processRequest(request, Profile.class);
+      return returnVal;
+    } else {
+      return lookup(profile, false, false);
+    }
   }
 
   /**
