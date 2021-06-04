@@ -43,6 +43,7 @@ public class Verification implements BaseDomainObject {
   private String merchantRefNum;
   
   /** The child account num. */
+  @Expose
   private String childAccountNum;
   
   /** The card. */
@@ -69,6 +70,7 @@ public class Verification implements BaseDomainObject {
   private Boolean dupCheck;
   
   /** The merchant descriptor. */
+  @Expose
   private MerchantDescriptor merchantDescriptor;
   
   /** The description. */
@@ -76,22 +78,32 @@ public class Verification implements BaseDomainObject {
   private String description;
   
   /** The master pass. */
+  @Expose
   private MasterPass masterPass;
   
   /** The txn time. */
+  @Expose
   private String txnTime;
   
   /** The currency code. */
+  @Expose
   private String currencyCode;
   
   /** The avs response. */
+  @Expose
   private AvsResponse avsResponse;
   
   /** The cvv verification. */
+  @Expose
   private CvvVerification cvvVerification;
   
   /** The status. */
+  @Expose
   private Status status;
+
+  /**The StoredCredential. */
+  @Expose
+  private StoredCredential storedCredential;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -104,10 +116,6 @@ public class Verification implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
-  
-  /**The StoredCredential. */
-  @Expose
-  private StoredCredential storedCredential;
 
   /**
    * Gets the id.

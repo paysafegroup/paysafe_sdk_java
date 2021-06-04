@@ -46,6 +46,7 @@ public class Refund implements BaseDomainObject {
   private Integer amount;
   
   /** The child account num. */
+  @Expose
   private String childAccountNum;
   
   /** The dup check. */
@@ -53,7 +54,12 @@ public class Refund implements BaseDomainObject {
   private Boolean dupCheck;
   
   /** The txn time. */
+  @Expose
   private String txnTime;
+
+  /** The settlement id. */
+  @Expose
+  private Id<Settlement> settlementId;
   
   /** The status. */
   @Expose
@@ -70,9 +76,6 @@ public class Refund implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
-  
-  /** The settlement id. */
-  private Id<Settlement> settlementId;
 
   /**
    * Gets the id.

@@ -18,6 +18,7 @@
  */
 package com.paysafe.cardpayments;
 
+import com.google.gson.annotations.Expose;
 import com.paysafe.common.impl.DomainObject;
 
 // TODO: Auto-generated Javadoc
@@ -27,15 +28,19 @@ import com.paysafe.common.impl.DomainObject;
 public class MasterPass implements DomainObject {
 
   /** The pay pass wallet indicator. */
+  @Expose
   private String payPassWalletIndicator;
   
   /** The authentication method. */
+  @Expose
   private String authenticationMethod;
   
   /** The card enrollment method. */
+  @Expose
   private String cardEnrollmentMethod;
   
   /** The master card assigned id. */
+  @Expose
   private String masterCardAssignedId;
 
   /**

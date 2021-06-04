@@ -60,9 +60,11 @@ public class Card implements BaseDomainObject {
   private String cardNum;
   
   /** The card bin. */
+  @Expose
   private String cardBin;
   
   /** The last digits. */
+  @Expose
   private String lastDigits;
   
   /** The card expiry. */
@@ -70,6 +72,7 @@ public class Card implements BaseDomainObject {
   private CardExpiry cardExpiry;
   
   /** The card type. */
+  @Expose
   private String cardType;
   
   /** The billing address id. */
@@ -77,6 +80,7 @@ public class Card implements BaseDomainObject {
   private Id<Address> billingAddressId;
   
   /** The default card indicator. */
+  @Expose
   private Boolean defaultCardIndicator;
   
   /** The payment token. */

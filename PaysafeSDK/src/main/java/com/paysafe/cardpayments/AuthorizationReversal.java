@@ -47,6 +47,7 @@ public class AuthorizationReversal implements BaseDomainObject {
   private Integer amount;
   
   /** The child account num. */
+  @Expose
   private String childAccountNum;
   
   /** The dup check. */
@@ -54,11 +55,16 @@ public class AuthorizationReversal implements BaseDomainObject {
   private Boolean dupCheck;
   
   /** The txn time. */
+  @Expose
   private String txnTime;
   
   /** The status. */
   @Expose
   private Status status;
+
+  /** The authorization id. */
+  @Expose
+  private Id<Authorization> authorizationId;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -71,9 +77,6 @@ public class AuthorizationReversal implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
-  
-  /** The authorization id. */
-  private Id<Authorization> authorizationId;
 
   /**
    * Gets the id.
