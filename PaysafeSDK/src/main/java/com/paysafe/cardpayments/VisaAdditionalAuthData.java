@@ -18,6 +18,7 @@
  */
 package com.paysafe.cardpayments;
 
+import com.google.gson.annotations.Expose;
 import com.paysafe.common.DateOfBirth;
 import com.paysafe.common.impl.DomainObject;
 
@@ -28,15 +29,19 @@ import com.paysafe.common.impl.DomainObject;
 public class VisaAdditionalAuthData implements DomainObject {
 
   /** The recipient date of birth. */
+  @Expose
   private DateOfBirth recipientDateOfBirth;
   
   /** The recipient zip. */
+  @Expose
   private String recipientZip;
   
   /** The recipient last name. */
+  @Expose
   private String recipientLastName;
   
   /** The recipient account number. */
+  @Expose
   private String recipientAccountNumber;
 
   /**

@@ -52,6 +52,7 @@ public class Address extends AddressContainer implements BaseDomainObject {
   private String recipientName;
   
   /** The default shipping address indicator. */
+  @Expose
   private Boolean defaultShippingAddressIndicator;
   
   /** The error. */

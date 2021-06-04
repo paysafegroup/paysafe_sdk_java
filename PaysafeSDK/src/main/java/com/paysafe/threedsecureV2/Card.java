@@ -24,7 +24,7 @@ public class Card implements DomainObject {
 	private String cardNum;
 
 	/** The card Bin. */
-
+	@Expose
 	private String cardBin;
 
 	/** The card expiry. */
@@ -32,6 +32,7 @@ public class Card implements DomainObject {
 	private CardExpiry cardExpiry;
 
 	/** The type. */
+	@Expose
 	private Type type;
 
 	/** The last digits. */

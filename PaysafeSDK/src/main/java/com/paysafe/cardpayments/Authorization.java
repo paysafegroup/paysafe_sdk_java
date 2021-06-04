@@ -50,9 +50,11 @@ public class Authorization implements BaseDomainObject {
   private Boolean settleWithAuth;
   
   /** The available to settle. */
+  @Expose
   private Integer availableToSettle;
   
   /** The child account num. */
+  @Expose
   private String childAccountNum;
   
   /** The card. */
@@ -64,9 +66,11 @@ public class Authorization implements BaseDomainObject {
   private Authentication authentication;
   
   /** The auth code. */
+  @Expose
   private String authCode;
   
   /** The profile. */
+  @Expose
   private Profile profile;
   
   /** The billing details. */
@@ -90,6 +94,7 @@ public class Authorization implements BaseDomainObject {
   private Boolean dupCheck;
   
   /** The keywords. */
+  @Expose
   private ArrayList<String> keywords;
   
   /** The merchant descriptor. */
@@ -101,36 +106,46 @@ public class Authorization implements BaseDomainObject {
   private AccordD accordD;
   
   /** The description. */
+  @Expose
   private String description;
   
   /** The master pass. */
+  @Expose
   private MasterPass masterPass;
   
   /** The txn time. */
+  @Expose
   private String txnTime;
   
   /** The currency code. */
+  @Expose
   private String currencyCode;
   
-  /** The avs response. */
-  private AvsResponse avsResponse;
-  
   /** The cvv verification. */
+  @Expose
   private CvvVerification cvvVerification;
-  
+
+  /** The visa additional auth data. */
+  @Expose
+  private VisaAdditionalAuthData visaAdditionalAuthData;
+
   /** The status. */
   @Expose
   private Status status;
+
+  /**The StoredCredential. */
+  @Expose
+  private StoredCredential storedCredential;
+
+  /** The avs response. */
+  private AvsResponse avsResponse;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
   
   /** The acquirer response. */
   private AcquirerResponse acquirerResponse;
-  
-  /** The visa additional auth data. */
-  private VisaAdditionalAuthData visaAdditionalAuthData;
-  
+
   /** The settlements. */
   private ArrayList<Settlement> settlements;
   
@@ -139,10 +154,6 @@ public class Authorization implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
-  
-  /**The StoredCredential. */
-  @Expose
-  private StoredCredential storedCredential;
 
   /**
    * Gets the id.

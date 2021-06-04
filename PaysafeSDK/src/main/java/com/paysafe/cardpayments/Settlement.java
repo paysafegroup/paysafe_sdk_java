@@ -46,12 +46,15 @@ public class Settlement implements BaseDomainObject {
   private Integer amount;
   
   /** The available to refund. */
+  @Expose
   private Integer availableToRefund;
   
   /** The child account num. */
+  @Expose
   private String childAccountNum;
   
   /** The txn time. */
+  @Expose
   private String txnTime;
   
   /** The dup check. */
@@ -61,6 +64,10 @@ public class Settlement implements BaseDomainObject {
   /** The status. */
   @Expose
   private Status status;
+
+  /** The authorization id. */
+  @Expose
+  private Id<Authorization> authorizationId;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -73,9 +80,6 @@ public class Settlement implements BaseDomainObject {
   
   /** The links. */
   private ArrayList<Link> links;
-  
-  /** The authorization id. */
-  private Id<Authorization> authorizationId;
 
   /**
    * Gets the id.

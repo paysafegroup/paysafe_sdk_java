@@ -40,55 +40,53 @@ public class Authentications implements BaseDomainObject {
 	private String merchantUrl;
 
 	/** The txnTime. */
-
+	@Expose
 	private String txnTime;
 
 	/** The error. */
-
 	private Error error;
 
 	/** The status. */
-
 	private Status status;
 
 	/** The acsUrl. */
-
+	@Expose
 	private String acsUrl;
 
 	/** The payload. */
-
+	@Expose
 	private String payload;
 
 	/** The three d enrollment. */
-
+	@Expose
 	private ThreeDEnrollment threeDEnrollment;
 
 	/** The three d result. */
-
+	@Expose
 	private ThreeDResult threeDResult;
 
 	/** The three d Secure Version. */
-
+	@Expose
 	private String threeDSecureVersion;
 
 	/** The directoryServerTransactionId. */
-
+	@Expose
 	private String directoryServerTransactionId;
 
 	/** The eci. */
-
+	@Expose
 	private Integer eci;
 
 	/** The cavv. */
-
+	@Expose
 	private String cavv;
 
 	/** The xid. */
-
+	@Expose
 	private String xid;
 
 	/** The sdk Challenge Payload. */
-
+	@Expose
 	private String sdkChallengePayload;
 
 	/** the type of transaction being authenticated. */
@@ -156,7 +154,6 @@ public class Authentications implements BaseDomainObject {
 	private Profile profile;
 
 	/** The signature Status. */
-
 	private SignatureStatus signatureStatus;
 
 	/** The threeDSecureServerTransactionId. */

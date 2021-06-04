@@ -34,6 +34,7 @@ public class BillingDetails implements DomainObject {
 	private String zip;
 
 	/** The useAsShippingAddress. */
+	@Expose
 	private Boolean useAsShippingAddress;
 
 	/**
