@@ -72,6 +72,12 @@ public class Settlement implements BaseDomainObject {
   /** The gateway reconciliation id */
   @Expose
   private String gatewayReconciliationId;
+
+  /**
+   * The split pay
+   */
+  @Expose
+  private SplitPay splitpay;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -337,6 +343,24 @@ public class Settlement implements BaseDomainObject {
   }
 
   /**
+   * Gets the split pay.
+   *
+   * @return the SplitPay
+   */
+  public SplitPay getSplitPay() {
+    return splitpay;
+  }
+
+  /**
+   * Sets the SplitPay.
+   *
+   * @param splitpay the SplitPay
+   */
+  public void setSplitPay(SplitPay splitpay) {
+    this.splitpay = splitpay;
+  }
+
+  /**
    * Get a Settlement builder.
    *
    * @return SettlementBuilder
@@ -426,6 +450,17 @@ public class Settlement implements BaseDomainObject {
      */
     public final SettlementBuilder gatewayReconciliationId(final String gatewayReconciliationId) {
       settlement.setGatewayReconciliationId(gatewayReconciliationId);
+      return this;
+    }
+
+    /**
+     * Set the splitPay property.
+     *
+     * @param splitPay the splitPay
+     * @return SettlementBuilder
+     */
+    public final SettlementBuilder splitPay(final SplitPay splitPay) {
+      settlement.setSplitPay(splitPay);
       return this;
     }
   }
