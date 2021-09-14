@@ -36,7 +36,10 @@ public class Authorization implements BaseDomainObject {
 
   /** The id. */
   private Id<Authorization> id;
-  
+
+  @Expose
+  private EntryMode entryMode;
+
   /** The merchant ref num. */
   @Expose
   private String merchantRefNum;
@@ -136,6 +139,18 @@ public class Authorization implements BaseDomainObject {
   /**The StoredCredential. */
   @Expose
   private StoredCredential storedCredential;
+
+  /**
+   * The Recipient
+   */
+  @Expose
+  private Recipient recipient;
+
+  /**
+   * This allows merchants who are enabled to provide additional L2/L3 transaction data.
+   */
+  @Expose
+  private Level2Level3 level2Level3;
 
   /** The avs response. */
   private AvsResponse avsResponse;
@@ -718,14 +733,68 @@ public class Authorization implements BaseDomainObject {
   public final StoredCredential getStoredCredential() {
 	return storedCredential;
 }
-/**
+  /**
    * Sets the storedCredential.
    *
    * @param storedCredential the new storedCredential
    */
-public final void setStoredCredentials(StoredCredential storedCredential) {
-	this.storedCredential = storedCredential;
-}
+  public final void setStoredCredentials(StoredCredential storedCredential) {
+	  this.storedCredential = storedCredential;
+  }
+
+  /**
+   * Set how the transaction has been initiated and will affect the way it will be processed.
+   *
+   * @param entryMode set entry mode
+   */
+  public void setEntryMode(EntryMode entryMode) {
+    this.entryMode = entryMode;
+  }
+
+  /**
+   * Gets the entry mode
+   *
+   * @return the EntryMode
+   */
+  public EntryMode getEntryMode() {
+    return entryMode;
+  }
+
+  /**
+   * Gets the recipient
+   *
+   * @return the Recipient
+   */
+  public Recipient getRecipient() {
+    return recipient;
+  }
+
+  /**
+   * Set the recipient
+   *
+   * @param recipient set recipient
+   */
+  public void setRecipient(Recipient recipient) {
+    this.recipient = recipient;
+  }
+
+  /**
+   * Gets the level2Level3 information
+   *
+   * @return the Level2Level3
+   */
+  public Level2Level3 getLevel2Level3() {
+    return level2Level3;
+  }
+
+  /**
+   * Set the level2Level3
+   *
+   * @param level2Level3 set level2Level3 information
+   */
+  public void setLevel2Level3(Level2Level3 level2Level3) {
+    this.level2Level3 = level2Level3;
+  }
 
   /**
    * Get an authorization builder.
@@ -931,7 +1000,6 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
 	 /**
      * Add details from a Stored credentials to this Stored credentials object.
      *
-     * @param a the a
      * @return AuthorizationBuilder
      */	
     public final StoredCredential.StoredCredentialBuilder<AuthorizationBuilder> storedCredential(){
@@ -945,7 +1013,7 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
      * Set the recurring property.
      *
      * @param recurring the recurring
-     * @return AuuthorizationBuilder
+     * @return AuthorizationBuilder
      */
     public final AuthorizationBuilder recurring(final Recurring recurring) {
       authorization.setRecurring(recurring);
@@ -956,7 +1024,7 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
      * Set the customerIp property.
      *
      * @param customerIp the customer ip
-     * @return AuuthorizationBuilder
+     * @return AuthorizationBuilder
      */
     public final AuthorizationBuilder customerIp(final String customerIp) {
       authorization.setCustomerIp(customerIp);
@@ -1005,10 +1073,43 @@ public final void setStoredCredentials(StoredCredential storedCredential) {
      * Set the description property.
      *
      * @param description the description
-     * @return AuuthorizationBuilder
+     * @return AuthorizationBuilder
      */
     public final AuthorizationBuilder description(final String description) {
       authorization.setDescription(description);
+      return this;
+    }
+
+    /**
+     * Set EntryMode
+     *
+     * @param entryMode EntryMode to be set
+     * @return AuthorizationBuilder
+     */
+    public final AuthorizationBuilder entryMode(final EntryMode entryMode) {
+      authorization.setEntryMode(entryMode);
+      return this;
+    }
+
+    /**
+     * Set Recipient
+     *
+     * @param recipient Recipient to be set
+     * @return AuthorizationBuilder
+     */
+    public final AuthorizationBuilder recipient(final Recipient recipient) {
+      authorization.setRecipient(recipient);
+      return this;
+    }
+
+    /**
+     * Set Level2Level3
+     *
+     * @param leve2level3 Level2Level3 to be set
+     * @return AuthorizationBuilder
+     */
+    public final AuthorizationBuilder leve2level3(final Level2Level3 leve2level3) {
+      authorization.setLevel2Level3(leve2level3);
       return this;
     }
   }
