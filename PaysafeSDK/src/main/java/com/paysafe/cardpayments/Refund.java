@@ -64,7 +64,17 @@ public class Refund implements BaseDomainObject {
   /** The status. */
   @Expose
   private Status status;
-  
+
+  /**
+   * The split pay
+   */
+  @Expose
+  private SplitPay splitpay;
+
+  /** The gateway reconciliation id */
+  @Expose
+  private String gatewayReconciliationId;
+
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
   
@@ -239,6 +249,24 @@ public class Refund implements BaseDomainObject {
     this.acquirerResponse = acquirerResponse;
   }
 
+  /**
+   * Gets the split pay.
+   *
+   * @return the SplitPay
+   */
+  public SplitPay getSplitPay() {
+    return splitpay;
+  }
+
+  /**
+   * Sets the SplitPay.
+   *
+   * @param splitpay the SplitPay
+   */
+  public void setSplitPay(SplitPay splitpay) {
+    this.splitpay = splitpay;
+  }
+
   /* (non-Javadoc)
    * @see com.optimalpayments.common.impl.BaseDomainObject#getError()
    */
@@ -290,6 +318,24 @@ public class Refund implements BaseDomainObject {
    */
   public final void setSettlementId(final Id<Settlement> settlementId) {
     this.settlementId = settlementId;
+  }
+
+  /**
+   * Gets the gateway reconciliation id.
+   *
+   * @return the gateway reconciliation id.
+   */
+  public final String getGatewayReconciliationId() {
+    return gatewayReconciliationId;
+  }
+
+  /**
+   * Sets the gateway reconciliation id.
+   *
+   * @param gatewayReconciliationId the new gatewayReconciliationId
+   */
+  public final void setGatewayReconciliationId(String gatewayReconciliationId) {
+    this.gatewayReconciliationId = gatewayReconciliationId;
   }
 
   /**
@@ -371,6 +417,28 @@ public class Refund implements BaseDomainObject {
      */
     public final RefundBuilder settlementId(final Id<Settlement> settlementId) {
       refund.setSettlementId(settlementId);
+      return this;
+    }
+
+    /**
+     * Set the gatewayReconciliationId property.
+     *
+     * @param gatewayReconciliationId the gateway reconciliation id
+     * @return RefundBuilder
+     */
+    public final RefundBuilder gatewayReconciliationId(final String gatewayReconciliationId) {
+      refund.setGatewayReconciliationId(gatewayReconciliationId);
+      return this;
+    }
+
+    /**
+     * Set the splitPay property.
+     *
+     * @param splitPay the splitPay
+     * @return RefundBuilder
+     */
+    public final RefundBuilder splitPay(final SplitPay splitPay) {
+      refund.setSplitPay(splitPay);
       return this;
     }
   }
