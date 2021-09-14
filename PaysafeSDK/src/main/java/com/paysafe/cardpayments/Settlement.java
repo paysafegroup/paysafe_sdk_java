@@ -68,6 +68,10 @@ public class Settlement implements BaseDomainObject {
   /** The authorization id. */
   @Expose
   private Id<Authorization> authorizationId;
+
+  /** The gateway reconciliation id */
+  @Expose
+  private String gatewayReconciliationId;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -315,6 +319,24 @@ public class Settlement implements BaseDomainObject {
   }
 
   /**
+   * Gets the gateway reconciliation id.
+   *
+   * @return the gateway reconciliation id.
+   */
+  public final String getGatewayReconciliationId() {
+    return gatewayReconciliationId;
+  }
+
+  /**
+   * Sets the gateway reconciliation id.
+   *
+   * @param gatewayReconciliationId the new gatewayReconciliationId
+   */
+  public final void setGatewayReconciliationId(String gatewayReconciliationId) {
+    this.gatewayReconciliationId = gatewayReconciliationId;
+  }
+
+  /**
    * Get a Settlement builder.
    *
    * @return SettlementBuilder
@@ -393,6 +415,17 @@ public class Settlement implements BaseDomainObject {
      */
     public final SettlementBuilder authorizationId(final Id<Authorization> authorizationId) {
       settlement.setAuthorizationId(authorizationId);
+      return this;
+    }
+
+    /**
+     * Set the gatewayReconciliationId property.
+     *
+     * @param gatewayReconciliationId the gateway reconciliation id
+     * @return SettlementBuilder
+     */
+    public final SettlementBuilder gatewayReconciliationId(final String gatewayReconciliationId) {
+      settlement.setGatewayReconciliationId(gatewayReconciliationId);
       return this;
     }
   }
