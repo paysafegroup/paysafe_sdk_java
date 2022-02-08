@@ -1,13 +1,11 @@
 apply plugin: "war"
-apply plugin: "jetty"
 
 repositories {
     mavenCentral()
 }
 
-httpPort = 8181
-
 dependencies {
-   compile project(":PaysafeSDK")
-   compile "javax.servlet:servlet-api:2.5"
+  implementation project(":PaysafeSDK")
+  implementation group: 'com.google.code.gson', name: 'gson', version: '2.2.2+'
+  implementation "javax.servlet:servlet-api:2.5"
 }
