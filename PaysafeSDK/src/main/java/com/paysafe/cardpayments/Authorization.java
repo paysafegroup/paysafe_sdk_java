@@ -21,6 +21,8 @@ package com.paysafe.cardpayments;
 import java.util.ArrayList;
 
 import com.google.gson.annotations.Expose;
+
+import com.paysafe.cardpayments.airline.AirlineTravelDetails;
 import com.paysafe.common.Error;
 import com.paysafe.common.Id;
 import com.paysafe.common.Link;
@@ -107,6 +109,10 @@ public class Authorization implements BaseDomainObject {
   /** The accord d. */
   @Expose
   private AccordD accordD;
+
+  /** The airline travel details.*/
+  @Expose
+  private AirlineTravelDetails airlineTravelDetails;
   
   /** The description. */
   @Expose
@@ -494,6 +500,20 @@ public class Authorization implements BaseDomainObject {
   }
 
   /**
+   * Retrieves the Airline Travel Details
+   */
+  public AirlineTravelDetails getAirlineTravelDetails() {
+    return airlineTravelDetails;
+  }
+
+  /**
+   * Sets the Airline Travel Details
+   */
+  public void setAirlineTravelDetails(AirlineTravelDetails airlineTravelDetails) {
+    this.airlineTravelDetails = airlineTravelDetails;
+  }
+
+  /**
    * Gets the description.
    *
    * @return the description
@@ -859,7 +879,7 @@ public class Authorization implements BaseDomainObject {
       if (null != accordDBuilder) {
         authorization.setAccordD(accordDBuilder.build());
       }
-      if(null !=storedCredentialBuilder){
+      if(null != storedCredentialBuilder){
     	  authorization.setStoredCredentials(storedCredentialBuilder.build());
       }
       return authorization;
@@ -891,7 +911,7 @@ public class Authorization implements BaseDomainObject {
      * Set the amount property.
      *
      * @param amount the amount
-     * @return AuuthorizationBuilder
+     * @return AuthorizationBuilder
      */
     public final AuthorizationBuilder amount(final Integer amount) {
       authorization.setAmount(amount);
@@ -902,7 +922,7 @@ public class Authorization implements BaseDomainObject {
      * Set the settleWithAuth property.
      *
      * @param settleWithAuth the settle with auth
-     * @return AuuthorizationBuilder
+     * @return AuthorizationBuilder
      */
     public final AuthorizationBuilder settleWithAuth(final Boolean settleWithAuth) {
       authorization.setSettleWithAuth(settleWithAuth);
@@ -1067,6 +1087,16 @@ public class Authorization implements BaseDomainObject {
         accordDBuilder = new AccordD.AccordDBuilder<AuthorizationBuilder>(this);
       }
       return accordDBuilder;
+    }
+
+    /**
+     * Build an accordD within this authorization.
+     *
+     * @return AccordD.AccordDBuilder< AuthorizationBuilder >
+     */
+    public final AuthorizationBuilder accordD(AccordD accordD) {
+      authorization.setAccordD(accordD);
+      return this;
     }
 
     /**

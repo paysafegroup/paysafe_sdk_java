@@ -19,15 +19,16 @@
 
 package com.paysafe.websample;
 
-import java.io.IOException;
-
-import javax.servlet.http.*;
-import javax.servlet.*;
-
 import com.paysafe.Environment;
 import com.paysafe.PaysafeApiClient;
 import com.paysafe.cardpayments.Authorization;
 import com.paysafe.common.PaysafeException;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class CardPaymentSimpleServlet extends PaysafeServletBase {
 
