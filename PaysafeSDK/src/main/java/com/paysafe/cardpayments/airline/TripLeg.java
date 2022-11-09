@@ -132,214 +132,433 @@ public class TripLeg implements DomainObject {
    * Taxes for a specific leg.
    */
   @Expose
-  private String taxes;
+  private Integer taxes;
 
+  /**
+   * Retrieve the flight.
+   * @return the flight
+   */
   public Flight getFlight() {
     return flight;
   }
 
+  /**
+   * Set the flight.
+   * @param flight - flight to set
+   */
   public void setFlight(Flight flight) {
     this.flight = flight;
   }
 
+  /**
+   * Retrieve the serviceClass.
+   * @return the serviceClass
+   */
   public String getServiceClass() {
     return serviceClass;
   }
 
+  /**
+   * Set the serviceClass.
+   * @param serviceClass - serviceClass to set
+   */
   public void setServiceClass(String serviceClass) {
     this.serviceClass = serviceClass;
   }
 
+  /**
+   * Retrieve the serviceClassFee.
+   * @return the serviceClassFee
+   */
   public Integer getServiceClassFee() {
     return serviceClassFee;
   }
 
+  /**
+   * Set the serviceClassFee.
+   * @param serviceClassFee - serviceClassFee to set
+   */
   public void setServiceClassFee(Integer serviceClassFee) {
     this.serviceClassFee = serviceClassFee;
   }
 
+  /**
+   * Retrieve whether stopOver is allowed.
+   * @return true if allowed
+   */
   public Boolean getStopOverAllowed() {
     return isStopOverAllowed;
   }
 
+  /**
+   * Set whether stopOver is allowed.
+   * @param stopOverAllowed - true if allowed
+   */
   public void setStopOverAllowed(Boolean stopOverAllowed) {
     isStopOverAllowed = stopOverAllowed;
   }
 
+  /**
+   * Retrieve the departureAirport.
+   * @return the departureAirport.
+   */
   public String getDepartureAirport() {
     return departureAirport;
   }
 
+  /**
+   * Set the departureAirport.
+   * @param departureAirport - departureAirport to set 
+   */
   public void setDepartureAirport(String departureAirport) {
     this.departureAirport = departureAirport;
   }
 
+  /**
+   * Retrieve the destination.
+   * @return the destination
+   */
   public String getDestination() {
     return destination;
   }
 
+  /**
+   * Set the destination.
+   * @param destination - destination to set
+   */
   public void setDestination(String destination) {
     this.destination = destination;
   }
 
+  /**
+   * Retrieve the fareBasis.
+   * @return tha fareBasis.
+   */
   public String getFareBasis() {
     return fareBasis;
   }
 
+  /**
+   * Set the fareBasis.
+   * @param fareBasis - fareBasis to set
+   */
   public void setFareBasis(String fareBasis) {
     this.fareBasis = fareBasis;
   }
 
+  /**
+   * Retrieve the departureTime.
+   * @return the departureTime
+   */
   public String getDepartureTime() {
     return departureTime;
   }
 
+  /**
+   * Set the departureTime.
+   * @param departureTime - departureTime to set
+   */
   public void setDepartureTime(String departureTime) {
     this.departureTime = departureTime;
   }
 
+  /**
+   * Retrieve the departureDate.
+   * @return the departureDate
+   */
   public String getDepartureDate() {
     return departureDate;
   }
 
+  /**
+   * Set the departureDate.
+   * @param departureDate - departureDate to set
+   */
   public void setDepartureDate(String departureDate) {
     this.departureDate = departureDate;
   }
 
+  /**
+   * Retrieve the arrivalTime.
+   * @return the arrivalTime
+   */
   public String getArrivalTime() {
     return arrivalTime;
   }
 
+  /**
+   * Set teh arrivalTime.
+   * @param arrivalTime - arrivalTime to set
+   */
   public void setArrivalTime(String arrivalTime) {
     this.arrivalTime = arrivalTime;
   }
 
+  /**
+   * Retrieve the conjunctionTicket.
+   * @return the conjunctionTicket
+   */
   public String getConjunctionTicket() {
     return conjunctionTicket;
   }
 
+  /**
+   * Set the conjunctionTicket. 
+   * @param conjunctionTicket - conjunctionTicket to set
+   */
   public void setConjunctionTicket(String conjunctionTicket) {
     this.conjunctionTicket = conjunctionTicket;
   }
 
+  /**
+   * Retrieve the couponNumber.
+   * @return the couponNumber
+   */
   public String getCouponNumber() {
     return couponNumber;
   }
 
+  /**
+   * Set the couponNumber.
+   * @param couponNumber - couponNumber to set
+   */
   public void setCouponNumber(String couponNumber) {
     this.couponNumber = couponNumber;
   }
 
+  /**
+   * Retrieve the notation.
+   * @return the notation
+   */
   public String getNotation() {
     return notation;
   }
 
+  /**
+   * Set the notation.
+   * @param notation - notation to set
+   */
   public void setNotation(String notation) {
     this.notation = notation;
   }
 
-  public String getTaxes() {
+  /**
+   * Retrieve the taxes.
+   * @return the taxes
+   */
+  public Integer getTaxes() {
     return taxes;
   }
 
-  public void setTaxes(String taxes) {
+  /**
+   * Set the taxes.
+   * @param taxes - taxes to set
+   */
+  public void setTaxes(Integer taxes) {
     this.taxes = taxes;
   }
 
+  /**
+   * The sub-builder class for the TripLeg object.
+   *
+   * @param <BLDRT> the parent builder
+   */
   public static class TripLegBuilder<
       BLDRT extends GenericBuilder> extends
       NestedBuilder<TripLeg, BLDRT> {
 
+
+    /**
+     * The builder for the flight.
+     */
+    private Flight.FlightBuilder<TripLegBuilder<BLDRT>> flightBuilder;
+    
+    /**
+     * The tripLeg object to be built.
+     */
     private final TripLeg tripLeg = new TripLeg();
 
 
+    /**
+     * Creates a new TripLegBuilder object.
+     * @param parent - the parent builder
+     */
     public TripLegBuilder(final BLDRT parent) {
       super(parent);
     }
 
+    /**
+     * Build this TripLeg object.
+     *
+     * @return the created TripLeg object
+     */
     @Override
     public final TripLeg build() {
+      if (flightBuilder != null) {
+        tripLeg.setFlight(flightBuilder.build());
+      }
       return tripLeg;
     }
 
+    /**
+     * Set the arrivalTime to the current builder instance.
+     * @param arrivalTime - arrivalTime to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> arrivalTime(
         final String arrivalTime) {
       tripLeg.setArrivalTime(arrivalTime);
       return this;
     }
 
+    /**
+     * Set the conjunctionTicket to the current builder instance.
+     * @param conjunctionTicket - conjunctionTicket to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> conjunctionTicket(
         final String conjunctionTicket) {
       tripLeg.setConjunctionTicket(conjunctionTicket);
       return this;
     }
 
+    /**
+     * Set the couponNumber to the current builder instance.
+     * @param couponNumber - couponNumber to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> couponNumber(
         final String couponNumber) {
       tripLeg.setCouponNumber(couponNumber);
       return this;
     }
 
+    /**
+     * Set the departureTime to the current builder instance.
+     * @param departureTime - departureTime to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> departureTime(
         final String departureTime) {
       tripLeg.setDepartureTime(departureTime);
       return this;
     }
 
+    /**
+     * Set the departureAirport to the current builder instance.
+     * @param departureAirport - departureAirport to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> departureAirport(
         final String departureAirport) {
       tripLeg.setDepartureAirport(departureAirport);
       return this;
     }
 
+    /**
+     * Set the destination to the current builder instance.
+     * @param destination - destination to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> destination(
         final String destination) {
       tripLeg.setDestination(destination);
       return this;
     }
 
+    /**
+     * Set the fareBasis to the current builder instance.
+     * @param fareBasis - fareBasis to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> fareBasis(
         final String fareBasis) {
       tripLeg.setFareBasis(fareBasis);
       return this;
     }
 
+    /**
+     * Set the departureDate to the current builder instance.
+     * @param departureDate - departureDate to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> departureDate(
         final String departureDate) {
       tripLeg.setDepartureDate(departureDate);
       return this;
     }
 
+    /**
+     * Set the flight to the current builder instance.
+     * @param flight - flight to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> flight(
         final Flight flight) {
       tripLeg.setFlight(flight);
       return this;
     }
 
+    /**
+     * Starts a new PassengerBuilder chain until the {@link NestedBuilder#done()} method is called.
+     * @return the new PassengerBuilder
+     */
+    public final Flight.FlightBuilder<TripLegBuilder<BLDRT>> flight() {
+      if (flightBuilder == null) {
+        flightBuilder = new Flight.FlightBuilder<>(this);
+      }
+      return flightBuilder;
+    }
+
+    /**
+     * Set the notation to the current builder instance.
+     * @param notation - notation to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> notation(
         final String notation) {
       tripLeg.setNotation(notation);
       return this;
     }
 
+    /**
+     * Set the stopOverAllowed to the current builder instance.
+     * @param stopOverAllowed - stopOverAllowed to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> stopOverAllowed(
         final Boolean stopOverAllowed) {
       tripLeg.setStopOverAllowed(stopOverAllowed);
       return this;
     }
 
+    /**
+     * Set the taxes to the current builder instance.
+     * @param taxes - ticketNumber to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> taxes(
-        final String taxes) {
+        final Integer taxes) {
       tripLeg.setTaxes(taxes);
       return this;
     }
 
+    /**
+     * Set the serviceClass to the current builder instance.
+     * @param serviceClass - serviceClass to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> serviceClass(
         final String serviceClass) {
       tripLeg.setServiceClass(serviceClass);
       return this;
     }
 
+    /**
+     * Set the serviceClassFee to the current builder instance.
+     * @param serviceClassFee - serviceClassFee- to set
+     * @return the currentBuilder
+     */
     public final TripLeg.TripLegBuilder<BLDRT> serviceClassFee(
         final Integer serviceClassFee) {
       tripLeg.setServiceClassFee(serviceClassFee);

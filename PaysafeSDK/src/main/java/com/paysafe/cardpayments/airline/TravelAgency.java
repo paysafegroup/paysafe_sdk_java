@@ -44,63 +44,138 @@ public class TravelAgency implements DomainObject {
   @Expose
   private AgencyAddress agencyAddress;
 
+  /**
+   * Retrieve the code
+   * @return the code
+   */
   public String getCode() {
     return code;
   }
 
+  /**
+   * Set the code
+   * @param code - code to set
+   */
   public void setCode(String code) {
     this.code = code;
   }
 
+  /**
+   * Retrieve the name
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Set the name
+   * @param name - name to set
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Retrieve the agencyAddress
+   * @return the agencyAddress
+   */
   public AgencyAddress getAgencyAddress() {
     return agencyAddress;
   }
 
+  /**
+   * Set the agencyAddress
+   * @param agencyAddress - the agencyAddress
+   */
   public void setAgencyAddress(AgencyAddress agencyAddress) {
     this.agencyAddress = agencyAddress;
   }
 
-
+  /**
+   * The sub-builder class for the TravelAgency object.
+   *
+   * @param <BLDRT> the parent builder
+   */
   public static class TravelAgencyBuilder<
       BLDRT extends GenericBuilder> extends
       NestedBuilder<TravelAgency, BLDRT> {
 
+    /**
+     * The builder for the agencyAddress
+     */
+    private AgencyAddress.AgencyAddressBuilder<TravelAgencyBuilder<BLDRT>> agencyAddressBuilder;
+
+    /**
+     * The TravelAgency object to be built.
+     */
     private final TravelAgency travelAgency = new TravelAgency();
 
+    /**
+     * Creates a new TravelAgencyBuilder object.
+     * @param parent - the parent builder
+     */
     public TravelAgencyBuilder(final BLDRT parent) {
       super(parent);
     }
 
 
+    /**
+     * Build this TravelAgency object.
+     *
+     * @return the created TravelAgency object
+     */
     @Override
     public final TravelAgency build() {
+      if (agencyAddressBuilder != null) {
+        travelAgency.setAgencyAddress(agencyAddressBuilder.build());
+      }
       return travelAgency;
     }
 
+    /**
+     * Set the code to the current builder instance.
+     * @param code - code to set
+     * @return the currentBuilder
+     */
     public final TravelAgency.TravelAgencyBuilder<BLDRT> code(
         final String code) {
       travelAgency.setCode(code);
       return this;
     }
 
+    /**
+     * Set the name to the current builder instance.
+     * @param name - name to set
+     * @return the currentBuilder
+     */
     public final TravelAgency.TravelAgencyBuilder<BLDRT> name(
         final String name) {
       travelAgency.setName(name);
       return this;
     }
 
+    /**
+     * Set the agencyAddress to the current builder instance.
+     * @param agencyAddress - agencyAddress to set
+     * @return the currentBuilder
+     */
     public final TravelAgency.TravelAgencyBuilder<BLDRT> agencyAddress(
         final AgencyAddress agencyAddress) {
       travelAgency.setAgencyAddress(agencyAddress);
       return this;
+    }
+
+
+    /**
+     * Starts a new AgencyAddressBuilder chain until the {@link NestedBuilder#done()} method is called.
+     * @return the new AgencyAddressBuilder
+     */
+    public final AgencyAddress.AgencyAddressBuilder<TravelAgencyBuilder<BLDRT>> agencyAddress() {
+      if (agencyAddressBuilder == null) {
+        agencyAddressBuilder = new AgencyAddress.AgencyAddressBuilder<>(this);
+      }
+      return agencyAddressBuilder;
     }
 
   }

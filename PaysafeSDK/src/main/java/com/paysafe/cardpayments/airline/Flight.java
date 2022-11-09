@@ -50,78 +50,148 @@ public class Flight implements DomainObject {
   @Expose
   private String flightNumber;
 
+  /**
+   * Retrieve the carrierCode.
+   * @return the carrierCode
+   */
   public String getCarrierCode() {
     return carrierCode;
   }
 
+  /**
+   * Set the carrierCode.
+   * @param carrierCode - carrierCode to set
+   */
   public void setCarrierCode(String carrierCode) {
     this.carrierCode = carrierCode;
   }
 
+  /**
+   * Retrieve the airlineName.
+   * @return the airlineName
+   */
   public String getAirlineName() {
     return airlineName;
   }
 
+  /**
+   * Set the airlineName.
+   * @param airlineName - airlineName to set
+   */
   public void setAirlineName(String airlineName) {
     this.airlineName = airlineName;
   }
 
+  /**
+   * Retrieve the airlineIcaoCode.
+   * @return the airlineIcaoCode
+   */
   public String getAirlineIcaoCode() {
     return airlineIcaoCode;
   }
 
+  /**
+   * Set teh airlineIcaoCode.
+   * @param airlineIcaoCode - airlineIcaoCode to set
+   */
   public void setAirlineIcaoCode(String airlineIcaoCode) {
     this.airlineIcaoCode = airlineIcaoCode;
   }
 
+  /**
+   * Retrieve the flightNumber.
+   * @return the flightNumber
+   */
   public String getFlightNumber() {
     return flightNumber;
   }
 
+  /**
+   * Set the flightNumber.
+   * @param flightNumber - flightNumber to set
+   */
   public void setFlightNumber(String flightNumber) {
     this.flightNumber = flightNumber;
   }
 
-
+  /**
+   * The sub-builder class for the Flight object.
+   *
+   * @param <BLDRT> the parent builder
+   */
   public static class FlightBuilder<BLDRT extends GenericBuilder>
       extends NestedBuilder<Flight, BLDRT> {
 
+    /**
+     * The Flight object to be created
+     */
     private final Flight flight = new Flight();
 
+    /**
+     * Creates a new FlightBuilder.
+     * @param parent - the parent builder
+     */
     public FlightBuilder(final BLDRT parent) {
       super(parent);
     }
 
+    /**
+     * Build this Flight object.
+     *
+     * @return the created Flight object
+     */
     @Override
     public final Flight build() {
       return flight;
     }
 
 
+
+    /**
+     * Set the flightNumber to the current builder instance.
+     * @param flightNumber - flightNumber to set
+     * @return the currentBuilder
+     */
     public final Flight.FlightBuilder<BLDRT> flightNumber(
         final String flightNumber) {
       flight.setFlightNumber(flightNumber);
       return this;
     }
 
+
+    /**
+     * Set the airlineIcaoCode to the current builder instance.
+     * @param airlineIcaoCode - airlineIcaoCode to set
+     * @return the currentBuilder
+     */
     public final Flight.FlightBuilder<BLDRT> airlineIcaoCode(
         final String airlineIcaoCode) {
       flight.setAirlineIcaoCode(airlineIcaoCode);
       return this;
     }
 
+
+    /**
+     * Set the carrierCode to the current builder instance.
+     * @param carrierCode - carrierCode to set
+     * @return the currentBuilder
+     */
     public final Flight.FlightBuilder<BLDRT> carrierCode(
         final String carrierCode) {
       flight.setCarrierCode(carrierCode);
       return this;
     }
 
+
+    /**
+     * Set the airlineName to the current builder instance.
+     * @param airlineName - airlineName to set
+     * @return the currentBuilder
+     */
     public final Flight.FlightBuilder<BLDRT> airlineName(
         final String airlineName) {
       flight.setAirlineName(airlineName);
       return this;
     }
-
-
   }
 }

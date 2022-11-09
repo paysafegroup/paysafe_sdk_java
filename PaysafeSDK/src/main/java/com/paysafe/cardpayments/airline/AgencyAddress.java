@@ -44,26 +44,50 @@ public class AgencyAddress implements DomainObject {
   @Expose
   private String country;
 
+  /**
+   * Retrieve the street.
+   * @return the street
+   */
   public String getStreet() {
     return street;
   }
 
+  /**
+   * Set the street.
+   * @param street - street to set
+   */
   public void setStreet(String street) {
     this.street = street;
   }
 
+  /**
+   * Retrieve the zip.
+   * @return the zip
+   */
   public String getZip() {
     return zip;
   }
 
+  /**
+   * Set the zip.
+   * @param zip - zip to set
+   */
   public void setZip(String zip) {
     this.zip = zip;
   }
 
+  /**
+   * Retrieve the country.
+   * @return the country
+   */
   public String getCountry() {
     return country;
   }
 
+  /**
+   * Set the country.
+   * @param country - country to set
+   */
   public void setCountry(String country) {
     this.country = country;
   }
@@ -79,32 +103,52 @@ public class AgencyAddress implements DomainObject {
     /** The agency address. */
     private final AgencyAddress agencyAddress = new AgencyAddress();
 
+    /**
+     * Create the nested builder.
+     * @param parent - the parent builder
+     */
     public AgencyAddressBuilder(final BLDRT parent) {
       super(parent);
     }
 
-
+    /**
+     * Creates an AgencyAddress instance.
+     * @return the instance
+     */
     @Override
     public final AgencyAddress build() {
       return agencyAddress;
     }
 
 
+    /**
+     * Set the country to the current builder instance.
+     * @param country - country to set
+     * @return the builder instance
+     */
     public final AgencyAddress.AgencyAddressBuilder<BLDRT> country(final String country) {
       agencyAddress.setCountry(country);
       return this;
     }
 
+    /**
+     * Set the street to the current builder instance.
+     * @param street - country to set
+     * @return the builder instance
+     */
     public final AgencyAddress.AgencyAddressBuilder<BLDRT> street(final String street) {
       agencyAddress.setStreet(street);
       return this;
     }
 
+    /**
+     * Set the zip to the current builder instance.
+     * @param zip - country to set
+     * @return the builder instance
+     */
     public final AgencyAddress.AgencyAddressBuilder<BLDRT> zip(final String zip) {
       agencyAddress.setZip(zip);
       return this;
     }
-
-
   }
 }

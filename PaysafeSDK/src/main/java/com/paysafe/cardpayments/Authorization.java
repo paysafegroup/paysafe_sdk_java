@@ -821,7 +821,7 @@ public class Authorization implements BaseDomainObject {
    *
    * @return AuthorizationBuilder
    */
-  public static final AuthorizationBuilder builder() {
+  public static AuthorizationBuilder builder() {
     return new AuthorizationBuilder();
   }
 
@@ -848,8 +848,10 @@ public class Authorization implements BaseDomainObject {
     /** The accord d builder. */
     private AccordD.AccordDBuilder<AuthorizationBuilder> accordDBuilder;
     
-	/**The Stored Credential Builder. */
-    private StoredCredential.StoredCredentialBuilder<AuthorizationBuilder>storedCredentialBuilder;
+	  /**The Stored Credential Builder. */
+    private StoredCredential.StoredCredentialBuilder<AuthorizationBuilder> storedCredentialBuilder;
+
+    private AirlineTravelDetails.AirlineTravelDetailsBuilder<AuthorizationBuilder> airlineTravelDetailsBuilder;
     
      /** The authorization. */
     private final Authorization authorization = new Authorization();
@@ -879,8 +881,11 @@ public class Authorization implements BaseDomainObject {
       if (null != accordDBuilder) {
         authorization.setAccordD(accordDBuilder.build());
       }
-      if(null != storedCredentialBuilder){
+      if (null != storedCredentialBuilder) {
     	  authorization.setStoredCredentials(storedCredentialBuilder.build());
+      }
+      if (null != airlineTravelDetailsBuilder) {
+        authorization.setAirlineTravelDetails(airlineTravelDetailsBuilder.build());
       }
       return authorization;
     }
@@ -949,6 +954,18 @@ public class Authorization implements BaseDomainObject {
      */
     public final AuthorizationBuilder card(final com.paysafe.customervault.Card c) {
       cardBuilder = new Card.CardBuilder<AuthorizationBuilder>(this, c);
+      return this;
+    }
+
+    public final AirlineTravelDetails.AirlineTravelDetailsBuilder<AuthorizationBuilder> airlineTravelDetails() {
+      if (null == airlineTravelDetailsBuilder) {
+        airlineTravelDetailsBuilder = new AirlineTravelDetails.AirlineTravelDetailsBuilder<>(this);
+      }
+      return airlineTravelDetailsBuilder;
+    }
+
+    public final AuthorizationBuilder airlineTravelDetails(final AirlineTravelDetails airlineTravelDetails) {
+      authorization.setAirlineTravelDetails(airlineTravelDetails);
       return this;
     }
 

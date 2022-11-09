@@ -96,128 +96,248 @@ public class Ticket implements DomainObject {
   @Expose
   private Integer numberOfPax;
 
+  /**
+   * Retrieve the ticketNumber.
+   * @return the ticketNumber
+   */
   public String getTicketNumber() {
     return ticketNumber;
   }
 
+  /**
+   * Set the ticketNumber.
+   * @param ticketNumber - ticketNumber to set
+   */
   public void setTicketNumber(String ticketNumber) {
     this.ticketNumber = ticketNumber;
   }
 
+  /**
+   * Retrieve whether the ticket is restricted
+   * @return true if restricted
+   */
   public Boolean getRestrictedTicket() {
     return isRestrictedTicket;
   }
 
+  /**
+   * Set whether the ticket is restricted
+   * @param restrictedTicket - true if restricted
+   */
   public void setRestrictedTicket(Boolean restrictedTicket) {
     isRestrictedTicket = restrictedTicket;
   }
 
+  /**
+   * Retrieve the cityOfTicketIssuing.
+   * @return the cityOfTicketIssuing
+   */
   public String getCityOfTicketIssuing() {
     return cityOfTicketIssuing;
   }
 
+  /**
+   * Set the cityOfTicketIssuing.
+   * @param cityOfTicketIssuing - the cityOfTicketIssuing to set
+   */
   public void setCityOfTicketIssuing(String cityOfTicketIssuing) {
     this.cityOfTicketIssuing = cityOfTicketIssuing;
   }
 
+  /**
+   * Retrieve the ticketDeliveryMethod.
+   * @return the ticketDeliveryMethod
+   */
   public TicketDeliveryMethod getTicketDeliveryMethod() {
     return ticketDeliveryMethod;
   }
 
+  /**
+   * Set the ticketDeliveryMethod.
+   * @param ticketDeliveryMethod - the ticketDeliveryMethod to set
+   */
   public void setTicketDeliveryMethod(TicketDeliveryMethod ticketDeliveryMethod) {
     this.ticketDeliveryMethod = ticketDeliveryMethod;
   }
 
+  /**
+   * Retrieve the ticketPrice.
+   * @return the ticketPrice
+   */
   public Integer getTicketPrice() {
     return ticketPrice;
   }
 
+  /**
+   * Set the ticketPrice.
+   * @param ticketPrice - the ticketPrice to set
+   */
   public void setTicketPrice(Integer ticketPrice) {
     this.ticketPrice = ticketPrice;
   }
 
+  /**
+   * Retrieve the ticketIssueDate.
+   * @return the ticketIssueDate
+   */
   public String getTicketIssueDate() {
     return ticketIssueDate;
   }
 
+  /**
+   * Set the ticketIssueDate.
+   * @param ticketIssueDate - the ticketIssueDate to set.
+   */
   public void setTicketIssueDate(String ticketIssueDate) {
     this.ticketIssueDate = ticketIssueDate;
   }
 
+  /**
+   * Retrieve whether this is an agency card.
+   * @return true if agency card
+   */
   public Boolean getAgencyCard() {
     return isAgencyCard;
   }
 
+  /**
+   * Set whether this is an agency card.
+   * @param agencyCard - true if agency card
+   */
   public void setAgencyCard(Boolean agencyCard) {
     isAgencyCard = agencyCard;
   }
 
+  /**
+   * Retrieve the numberOfPax.
+   * @return the numberOfPax
+   */
   public Integer getNumberOfPax() {
     return numberOfPax;
   }
 
+  /**
+   * Set the numberOfPax.
+   * @param numberOfPax - the numberOfPax to set
+   */
   public void setNumberOfPax(Integer numberOfPax) {
     this.numberOfPax = numberOfPax;
   }
 
 
-  public static class TicketBuilder<
-      BLDRT extends GenericBuilder> extends
-      NestedBuilder<Ticket, BLDRT> {
+  /**
+   * The sub-builder class for the Ticket object.
+   *
+   * @param <BLDRT> the parent builder
+   */
+  public static class TicketBuilder<BLDRT extends GenericBuilder>
+      extends NestedBuilder<Ticket, BLDRT> {
 
+    /**
+     * The ticket object to be built.
+     */
     private final Ticket ticket = new Ticket();
 
+    /**
+     * Creates a new TicketBuilder object.
+     * @param parent - the parent builder
+     */
     public TicketBuilder(final BLDRT parent) {
       super(parent);
     }
 
+    /**
+     * Build this Ticket object.
+     *
+     * @return the created Ticket object
+     */
     @Override
     public final Ticket build() {
       return ticket;
     }
 
+    /**
+     * Set the restrictedTicket to the current builder instance.
+     * @param restrictedTicket - restrictedTicket to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> restrictedTicket(
         final Boolean restrictedTicket) {
       ticket.setRestrictedTicket(restrictedTicket);
       return this;
     }
 
+    /**
+     * Set the ticketPrice to the current builder instance.
+     * @param ticketPrice - ticketPrice to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> ticketPrice(
         final Integer ticketPrice) {
       ticket.setTicketPrice(ticketPrice);
       return this;
     }
 
+    /**
+     * Set the ticketNumber to the current builder instance.
+     * @param ticketNumber - ticketNumber to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> ticketNumber(
         final String ticketNumber) {
       ticket.setTicketNumber(ticketNumber);
       return this;
     }
 
+    /**
+     * Set the cityOfTicketIssuing to the current builder instance.
+     * @param cityOfTicketIssuing - cityOfTicketIssuing to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> cityOfTicketIssuing(
         final String cityOfTicketIssuing) {
       ticket.setCityOfTicketIssuing(cityOfTicketIssuing);
       return this;
     }
 
+    /**
+     * Set the ticketIssueDate to the current builder instance.
+     * @param ticketIssueDate - ticketIssueDate to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> ticketIssueDate(
         final String ticketIssueDate) {
       ticket.setTicketIssueDate(ticketIssueDate);
       return this;
     }
 
+    /**
+     * Set the agencyCard to the current builder instance.
+     * @param agencyCard - agencyCard to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> agencyCard(
         final Boolean agencyCard) {
       ticket.setAgencyCard(agencyCard);
       return this;
     }
 
+    /**
+     * Set the numberOfPax to the current builder instance.
+     * @param numberOfPax - numberOfPax to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> numberOfPax(
         final Integer numberOfPax) {
       ticket.setNumberOfPax(numberOfPax);
       return this;
     }
 
+    /**
+     * Set the ticketDeliveryMethod to the current builder instance.
+     * @param ticketDeliveryMethod - ticketDeliveryMethod to set
+     * @return the currentBuilder
+     */
     public final Ticket.TicketBuilder<BLDRT> ticketDeliveryMethod(
         final TicketDeliveryMethod ticketDeliveryMethod) {
       ticket.setTicketDeliveryMethod(ticketDeliveryMethod);
