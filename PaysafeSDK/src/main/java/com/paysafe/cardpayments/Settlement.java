@@ -22,6 +22,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 
+import com.paysafe.cardpayments.airline.AirlineTravelDetails;
 import com.paysafe.common.Error;
 import com.paysafe.common.Id;
 import com.paysafe.common.Link;
@@ -78,6 +79,9 @@ public class Settlement implements BaseDomainObject {
    */
   @Expose
   private SplitPay splitpay;
+
+  @Expose
+  private AirlineTravelDetails airlineTravelDetails;
   
   /** The risk reason code. */
   private ArrayList<Integer> riskReasonCode;
@@ -361,11 +365,27 @@ public class Settlement implements BaseDomainObject {
   }
 
   /**
+   * Gets the AirlineTravelDetails.
+   * @return the airlineTravelDetails
+   */
+  public AirlineTravelDetails getAirlineTravelDetails() {
+    return airlineTravelDetails;
+  }
+
+  /**
+   * Sets the airlineTravelDetails.
+   * @param airlineTravelDetails - details to set
+   */
+  public void setAirlineTravelDetails(AirlineTravelDetails airlineTravelDetails) {
+    this.airlineTravelDetails = airlineTravelDetails;
+  }
+
+  /**
    * Get a Settlement builder.
    *
    * @return SettlementBuilder
    */
-  public static final SettlementBuilder builder() {
+  public static SettlementBuilder builder() {
     return new SettlementBuilder();
   }
 
@@ -461,6 +481,12 @@ public class Settlement implements BaseDomainObject {
      */
     public final SettlementBuilder splitPay(final SplitPay splitPay) {
       settlement.setSplitPay(splitPay);
+      return this;
+    }
+
+    public final SettlementBuilder airlineTravelDetails(
+        final AirlineTravelDetails airlineTravelDetails) {
+      settlement.setAirlineTravelDetails(airlineTravelDetails);
       return this;
     }
   }

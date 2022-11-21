@@ -9,3 +9,4 @@ reports
 .nb-gradle/
 .nb-gradle-properties
 .idea/
+out
