@@ -30,48 +30,48 @@ public class TripLegs implements DomainObject {
    * Description of first leg of trip.
    */
   @Expose
-  private TripLeg tripLeg1;
+  private TripLeg leg1;
 
   /**
    * Description of second leg of trip.
    */
   @Expose
-  private TripLeg tripLeg2;
+  private TripLeg leg2;
 
   /**
    * Description of third leg of trip.
    */
   @Expose
-  private TripLeg tripLeg3;
+  private TripLeg leg3;
 
   /**
    * Description of fourth leg of trip.
    */
   @Expose
-  private TripLeg tripLeg4;
+  private TripLeg leg4;
 
   /**
    * Retrieve the first tripLeg
    * @return the first tripLeg
    */
-  public TripLeg getTripLeg1() {
-    return tripLeg1;
+  public TripLeg getLeg1() {
+    return leg1;
   }
 
   /**
    * Set the first tripLeg
    * @param tripLeg - tripLeg to set
    */
-  public void setTripLeg1(TripLeg tripLeg) {
-    this.tripLeg1 = tripLeg;
+  public void setLeg1(TripLeg tripLeg) {
+    this.leg1 = tripLeg;
   }
 
   /**
    * Retrieve the second tripLeg
    * @return the second tripLeg
    */
-  public TripLeg getTripLeg2() {
-    return tripLeg2;
+  public TripLeg getLeg2() {
+    return leg2;
   }
 
 
@@ -79,16 +79,16 @@ public class TripLegs implements DomainObject {
    * Set the second tripLeg
    * @param tripLeg - tripLeg to set
    */
-  public void setTripLeg2(TripLeg tripLeg) {
-    this.tripLeg2 = tripLeg;
+  public void setLeg2(TripLeg tripLeg) {
+    this.leg2 = tripLeg;
   }
 
   /**
    * Retrieve the third tripLeg
    * @return the third tripLeg
    */
-  public TripLeg getTripLeg3() {
-    return tripLeg3;
+  public TripLeg getLeg3() {
+    return leg3;
   }
 
 
@@ -96,16 +96,16 @@ public class TripLegs implements DomainObject {
    * Set the second tripLeg
    * @param tripLeg - tripLeg to set
    */
-  public void setTripLeg3(TripLeg tripLeg) {
-    this.tripLeg3 = tripLeg;
+  public void setLeg3(TripLeg tripLeg) {
+    this.leg3 = tripLeg;
   }
 
   /**
    * Retrieve the fourth tripLeg
    * @return the fourth tripLeg
    */
-  public TripLeg getTripLeg4() {
-    return tripLeg4;
+  public TripLeg getLeg4() {
+    return leg4;
   }
 
 
@@ -113,8 +113,8 @@ public class TripLegs implements DomainObject {
    * Set the second tripLeg
    * @param tripLeg - tripLeg to set
    */
-  public void setTripLeg4(TripLeg tripLeg) {
-    this.tripLeg4 = tripLeg;
+  public void setLeg4(TripLeg tripLeg) {
+    this.leg4 = tripLeg;
   }
 
   public static class TripLegsBuilder<BLDRT extends GenericBuilder>
@@ -162,16 +162,16 @@ public class TripLegs implements DomainObject {
     @Override
     public final TripLegs build() {
       if (tripLeg1Builder != null) {
-        tripLegs.setTripLeg1(tripLeg1Builder.build());
+        tripLegs.setLeg1(tripLeg1Builder.build());
       }
       if (tripLeg2Builder != null) {
-        tripLegs.setTripLeg2(tripLeg2Builder.build());
+        tripLegs.setLeg2(tripLeg2Builder.build());
       }
       if (tripLeg3Builder != null) {
-        tripLegs.setTripLeg3(tripLeg3Builder.build());
+        tripLegs.setLeg3(tripLeg3Builder.build());
       }
       if (tripLeg4Builder != null) {
-        tripLegs.setTripLeg4(tripLeg4Builder.build());
+        tripLegs.setLeg4(tripLeg4Builder.build());
       }
       return tripLegs;
     }
@@ -182,8 +182,8 @@ public class TripLegs implements DomainObject {
      * @param tripLeg - tripLeg1 to set
      * @return the currentBuilder
      */
-    public final TripLegs.TripLegsBuilder<BLDRT> tripLeg1(final TripLeg tripLeg) {
-      tripLegs.setTripLeg1(tripLeg);
+    public final TripLegs.TripLegsBuilder<BLDRT> leg1(final TripLeg tripLeg) {
+      tripLegs.setLeg1(tripLeg);
       return this;
     }
 
@@ -191,7 +191,7 @@ public class TripLegs implements DomainObject {
      * Starts a new TripLegBuilder chain until the {@link NestedBuilder#done()} method is called.
      * @return the new TripLegBuilder
      */
-    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> tripLeg1() {
+    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> leg1() {
       if (tripLeg1Builder == null) {
         tripLeg1Builder = new TripLeg.TripLegBuilder<>(this);
       }
@@ -203,8 +203,8 @@ public class TripLegs implements DomainObject {
      * @param tripLeg - tripLeg2 to set
      * @return the currentBuilder
      */
-    public final TripLegs.TripLegsBuilder<BLDRT> tripLeg2(final TripLeg tripLeg) {
-      tripLegs.setTripLeg2(tripLeg);
+    public final TripLegs.TripLegsBuilder<BLDRT> leg2(final TripLeg tripLeg) {
+      tripLegs.setLeg2(tripLeg);
       return this;
     }
 
@@ -212,7 +212,7 @@ public class TripLegs implements DomainObject {
      * Starts a new TripLegBuilder chain until the {@link NestedBuilder#done()} method is called.
      * @return the new TripLegBuilder
      */
-    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> tripLeg2() {
+    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> leg2() {
       if (tripLeg2Builder == null) {
         tripLeg2Builder = new TripLeg.TripLegBuilder<>(this);
       }
@@ -224,8 +224,8 @@ public class TripLegs implements DomainObject {
      * @param tripLeg - tripLeg3 to set
      * @return the currentBuilder
      */
-    public final TripLegs.TripLegsBuilder<BLDRT> tripLeg3(final TripLeg tripLeg) {
-      tripLegs.setTripLeg3(tripLeg);
+    public final TripLegs.TripLegsBuilder<BLDRT> leg3(final TripLeg tripLeg) {
+      tripLegs.setLeg3(tripLeg);
       return this;
     }
 
@@ -233,7 +233,7 @@ public class TripLegs implements DomainObject {
      * Starts a new TripLegBuilder chain until the {@link NestedBuilder#done()} method is called.
      * @return the new TripLegBuilder
      */
-    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> tripLeg3() {
+    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> leg3() {
       if (tripLeg3Builder == null) {
         tripLeg3Builder = new TripLeg.TripLegBuilder<>(this);
       }
@@ -245,8 +245,8 @@ public class TripLegs implements DomainObject {
      * @param tripLeg - tripLeg4 to set
      * @return the currentBuilder
      */
-    public final TripLegs.TripLegsBuilder<BLDRT> tripLeg4(final TripLeg tripLeg) {
-      tripLegs.setTripLeg4(tripLeg);
+    public final TripLegs.TripLegsBuilder<BLDRT> leg4(final TripLeg tripLeg) {
+      tripLegs.setLeg4(tripLeg);
       return this;
     }
 
@@ -254,7 +254,7 @@ public class TripLegs implements DomainObject {
      * Starts a new TripLegBuilder chain until the {@link NestedBuilder#done()} method is called.
      * @return the new TripLegBuilder
      */
-    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> tripLeg4() {
+    public final TripLeg.TripLegBuilder<TripLegsBuilder<BLDRT>> leg4() {
       if (tripLeg4Builder == null) {
         tripLeg4Builder = new TripLeg.TripLegBuilder<>(this);
       }

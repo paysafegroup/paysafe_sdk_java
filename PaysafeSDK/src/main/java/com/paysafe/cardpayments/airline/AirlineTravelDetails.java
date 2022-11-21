@@ -51,7 +51,7 @@ public class AirlineTravelDetails implements DomainObject {
 
   /**
    * Departure Airport Code (IATA Airport Code).<br>
-   * Example “YUL”
+   * Example "YUL"
    */
   @Expose
   private String origin;

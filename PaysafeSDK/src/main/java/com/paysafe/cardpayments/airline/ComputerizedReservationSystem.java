@@ -21,24 +21,25 @@ package com.paysafe.cardpayments.airline;
 /**
  * Indicates the computerized reservation system used to make
  * the reservation and purchase the ticket.
+ * <p>For tickets purchased in Germany, this field should one of these codes:</p>
+ * <ul>
+ *   <li>STRT = Start</li>
+ *   <li>PARS = TWA</li>
+ *   <li>DATS = Delta</li>
+ *   <li>SABR = Sabre</li>
+ *   <li>DALA = Covia-Apollo</li>
+ *   <li>BLAN = Dr. Blank</li>
+ *   <li>DERD = DER</li>
+ *   <li>TUID = TUI</li>
+ * </ul>
  */
 public enum ComputerizedReservationSystem {
-  STRT("Start"),
-  PARS("TWA"),
-  DATS("Delta"),
-  SABR("Sabre"),
-  DALA("Covia-Apollo"),
-  BLAN("Dr. Blank"),
-  DERD("DER"),
-  TUID("TUI");
-
-  private final String value;
-
-  ComputerizedReservationSystem(String value) {
-    this.value = value;
-  }
-
-  public String getValue() {
-    return value;
-  }
+  STRT,
+  PARS,
+  DATS,
+  SABR,
+  DALA,
+  BLAN,
+  DERD,
+  TUID
 }
